@@ -1,4 +1,4 @@
-# Cara_a_Cara
+# Cara_A_Cara
 Grupo: Florencia Averame, Gustavo Borges, Sophia Braz
 
 Intruções:
