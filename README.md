@@ -11,3 +11,5 @@ O jogador clicará nas imagens das personagens disponíveis para descartá-las, 
 VIDEO :
 
 Para jogar o jogo é preciso a instalar biblioteca pygame do python
+
+Como executar o jogo?
