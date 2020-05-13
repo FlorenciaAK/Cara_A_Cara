@@ -36,10 +36,26 @@ class Carac:
         self.acessorios = acessorios
 
 Rodrigo = Carac(masculino, clara, castanho, fechada, castanhos, nao, nao, pontudo, nao)
-Karina = Carac(femenino, negra, castanho, aberta, verde, nao, nao, redondo, brincos)
+Karina = Carac(feminino, negra, castanho, aberta, verdes, nao, nao, redondo, brincos)
 Ricardo = Carac(masculino, clara, preto, aberta, castanhos, nao, barba, redondo, nao)
 Bruno = Carac(masculino, clara, loiro, fechada, verdes, sim, barba, redondo, nao)
+Paula = Carac(feminino, clara, loiro, fechada, castanhos, nao, nao, redondo, batom)
+Fransisco = Carac(masculio, clara, castanho, aberta, azuis, nao, bigode, pontudo, nao)
+Erica = Carac(feminino, clara, loiro, fecada, azuis, sim, nao, redondo, chapeu)
+Sonia = Carac(feminino, clara, branco, fechada, verdes, sim, nao, pontudo, brinco)
+Felipe = Carac(masculino, clara, nao, abeta, preto, oculos, bigode, pontudo, nao)
+Julia = Carac(feminino, clara, castanho, fechada, pretos, nao, nao, redondo, nao)
+Eduardo = Carac(masculino , clara, loiro, aberta, azuis, nao, nao, pontudo, chapeu)
+Mariana = Carac(feminino, clara, branco, fechada, castanhos, nao, nao, redondo, brinco)
+Pedro = Carac(masculino, clara, preto, fechada, verdes, nao, nao, redondo, bone)
+Gisele = Carac(feminino, negra, preto, fechada, castanhos, nao, redondo, brincos)
+Juliana = Carac(feminino, clara, preto, aberta, pretos, nao, nao, redondo, brincos)
+Robson = Carac(masculino, negra, preto, fechada, castanho, sim, nao, redondo, nao)
+Aline = Carac(feminino, clara, ruivo, aberta, verdes, sim, nao, pontudo, nao)
+Gabriel = Carac(masculino, negra, preto, aberta, castanhos, nao, nao, pontudo, faixa)
+Nathalia = Carac(feminino, negra, preto, fechada, castanhos, nao, nao, pontudo, brincos)
 
+# "Daniel", "Marcelo", "João", "Marta", "Renato"]
 #variável game que define que o jogo deve continuar
 game = True
 
