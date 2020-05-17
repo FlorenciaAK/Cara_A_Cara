@@ -3,6 +3,7 @@
 #importações necessárias
 import pygame
 import random
+from os import path
 
 #inicio pacote do pygame
 pygame.init()
@@ -60,12 +61,16 @@ Joao = Carac(masculino,clara,branco,fechada,pretos,nao,nao,pontudo,chapeu)
 Marta = Carac(feminino,clara,preto,aberta,azuis,nao,nao,redondo,brinco)
 Renato = Carac(masculino,clara,preto,fechada,pretos,nao,nao,redondo,nao)
 
+#tela inicial
+inicio_dir = path.join(path.dirname(__file__),'assets/img')
+inicio_load = pygame.image.load(path.join(inicio_dir, 'inicio.png')).convert()
+inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
+window.blit(inicio, (0,0))
 
 
-
-# "Daniel", "Marcelo", "João", "Marta", "Renato"]
 #variável game que define que o jogo deve continuar
 game = True
+
 
 #inicia contador de tentativas
 contador = 1
@@ -77,10 +82,14 @@ while game:
         #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
         if event.type == pygame.QUIT:
                 game = False
+        #verifica se o jogador clicou em alguma tecta do teclado
+        if event.type == pygame.key.get_press():
+            
 
     #preenche tela com cor branca
     window.fill((255, 255, 255))
 
+    
     #perguntar se o jogador que chutar um nome
     
     desejo = input("Você quer chutar algum nome? s ou n: ")
