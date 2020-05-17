@@ -61,6 +61,8 @@ Marta = Carac(feminino,clara,preto,aberta,azuis,nao,nao,redondo,brinco)
 Renato = Carac(masculino,clara,preto,fechada,pretos,nao,nao,redondo,nao)
 
 
+
+
 # "Daniel", "Marcelo", "João", "Marta", "Renato"]
 #variável game que define que o jogo deve continuar
 game = True
