@@ -172,6 +172,8 @@ contador = 1
 
 #continua o jogo enquanto game for True
 while game:
+    redesenhaWindow()
+    pygame.display.update()
     #pygame.event.get() devolve uma lista com todos os eventos que ocorreram desde a última vez q a funçao foi chamada (get())
     for event in pygame.event.get():
         #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
