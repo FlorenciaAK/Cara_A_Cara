@@ -183,6 +183,56 @@ while game:
         if event.type == pygame.KEYDOWN:
         #Variavel da posicao do mause
         pos = pygame.mouse.get_pos()
+        #Se o botao for apertado ocorre um evento 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if Aline_button.isOver(pos):
+                print('botao clicado')
+            if Rodrigo_button.isOver(pos):
+                print('botao clicado')
+            if Karina_button.isOver(pos):
+                print('botao clicado')
+            if Ricardo_button.isOver(pos):
+                print('botao clicado')
+            if Bruno_button.isOver(pos):
+                print('botao clicado')
+            if Paula_button.isOver(pos):
+                print('botao clicado')
+            if Fransisco_button.isOver(pos):
+                print('botao clicado')
+            if Erica_button.isOver(pos):
+                print('botao clicado')
+            if Sonia_button.isOver(pos):
+                print('botao clicado')
+            if Felipe_button.isOver(pos):
+                print('botao clicado')
+            if Julia_button.isOver(pos):
+                print('botao clicado')
+            if Eduardo_button.isOver(pos):
+                print('botao clicado')
+            if Mariana_button.isOver(pos):
+                print('botao clicado')
+            if Pedro_button.isOver(pos):
+                print('botao clicado')
+            if Gisele_button.isOver(pos):
+                print('botao clicado')
+            if Juliana_button.isOver(pos):
+                print('botao clicado')
+            if Robson_button.isOver(pos):
+                print('botao clicado')
+            if Gabriel_button.isOver(pos):
+                print('botao clicado')
+            if Nathalia_button.isOver(pos):
+                print('botao clicado')
+            if Daniel_button.isOver(pos):
+                print('botao clicado')
+            if Marcelo_button.isOver(pos):
+                print('botao clicado')
+            if Joao_button.isOver(pos):
+                print('botao clicado')
+            if Marta_button.isOver(pos):
+                print('botao clicado')
+            if Renato_button.isOver(pos):
+                print('botao clicado')
             
 
     #preenche tela com cor branca
