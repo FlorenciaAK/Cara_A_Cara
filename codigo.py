@@ -181,6 +181,8 @@ while game:
             game = False
         #verifica se o jogador clicou em alguma tecta do teclado
         if event.type == pygame.KEYDOWN:
+        #Variavel da posicao do mause
+        pos = pygame.mouse.get_pos()
             
 
     #preenche tela com cor branca
