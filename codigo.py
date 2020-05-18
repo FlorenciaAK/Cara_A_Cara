@@ -3,7 +3,7 @@
 #importações necessárias
 import pygame
 import random
-from os import path
+import os
 
 #inicio pacote do pygame
 pygame.init()
@@ -61,6 +61,34 @@ Joao = Carac(masculino,clara,branco,fechada,pretos,nao,nao,pontudo,chapeu)
 Marta = Carac(feminino,clara,preto,aberta,azuis,nao,nao,redondo,brinco)
 Renato = Carac(masculino,clara,preto,fechada,pretos,nao,nao,redondo,nao)
 
+# uniformiza o tamanho dos Botoes 
+largura_img =90
+altura_img =150
+class button(pygame.sprite.Sprite):
+    def __init__(self,nome_da_imagen, x,y):
+        #Define o botao importando as sprites das personagens
+        self.image = os.path.join('Cara_A_Cara','assets','img',nome_da_imagen)
+        self.image = pygame.image.load(self.image).convert_alpha()
+        self.image = pygame.transform.scale(self.image,(largura_img,altura_img))
+        self.x = x
+        self.y = y
+
+    def draw(self,win,outline=None):
+        #funcao que desenha o botao na tela 
+        if outline:
+            pygame.draw.rect(win, outline, (self.x-2,self.y-2,largura_img+4,altura_img+4),0)
+            
+        window.blit(self.image,[self.x,self.y])
+        
+
+    def isOver(self, pos):
+        #Rastreia a posicao do  mause para  ver se esta em cima do botao
+        if pos[0] > self.x and pos[0] < self.x + largura_img :
+            if pos[1] > self.y and pos[1] < self.y + altura_img:
+                return True
+            
+        return False
+
 
 #definindo funções:
 def chute ():
@@ -73,10 +101,12 @@ def chute ():
         game = True
 
 #tela inicial
-inicio_dir = path.join(path.dirname(__file__),'assets/img')
-inicio_load = pygame.image.load(path.join(inicio_dir, 'inicio.png')).convert()
+inicio_dir = os.path.join('assets','img','inicio.jpg')
+inicio_load = pygame.image.load(inicio_dir).convert()
 inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
 window.blit(inicio, (0,0))
+ pygame.display.update()
+
 
 
 #variável game que define que o jogo deve continuar
@@ -94,7 +124,7 @@ while game:
         if event.type == pygame.QUIT:
             game = False
         #verifica se o jogador clicou em alguma tecta do teclado
-        if event.type == pygame.key.get_press():
+        if event.type == pygame.KEYDOWN:
             
 
     #preenche tela com cor branca
