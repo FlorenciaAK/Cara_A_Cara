@@ -62,13 +62,13 @@ Gisele = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'red
 Juliana = Carac('feminino', 'clara', 'preto', 'aberta', 'pretos', 'nao', 'nao', 'redondo', 'brincos')
 Robson = Carac('masculino', 'negra', 'preto', 'fechada', 'castanho', 'sim', 'nao', 'redondo', 'nao')
 Aline = Carac('feminino', 'clara', 'ruivo', 'aberta', 'verdes', 'sim', 'nao', 'pontudo', 'nao')
-Gabriel = Carac(masculino, negra, preto, aberta, castanhos, nao, nao, pontudo, faixa)
-Nathalia = Carac(feminino, negra, preto, fechada, castanhos, nao, nao, pontudo, brincos)
-Daniel = Carac(masculino,clara,ruivo,aberta,castanhos,nao,barba,redondo,nao)
-Marcelo = Carac(masculino,clara,nao,aberta,pretos,nao,barba,redondo,nao)
-Joao = Carac(masculino,clara,branco,fechada,pretos,nao,nao,pontudo,chapeu)
-Marta = Carac(feminino,clara,preto,aberta,azuis,nao,nao,redondo,brinco)
-Renato = Carac(masculino,clara,preto,fechada,pretos,nao,nao,redondo,nao)
+Gabriel = Carac('masculino', 'negra', 'preto', 'aberta', 'castanhos', 'nao', 'nao', 'pontudo', 'faixa')
+Nathalia = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'brincos')
+Daniel = Carac('masculino','clara','ruivo','aberta','castanhos','nao','barba','redondo','nao')
+Marcelo = Carac('masculino','clara','nao','aberta','pretos','nao','barba','redondo','nao')
+Joao = Carac('masculino','clara','branco','fechada','pretos','nao','nao','pontudo','chapeu')
+Marta = Carac('feminino','clara','preto','aberta','azuis','nao','nao','redondo','brinco')
+Renato = Carac('masculino','clara','preto','fechada','pretos','nao','nao','redondo','nao')
 
 # uniformiza o tamanho dos Botoes 
 largura_img =90
