@@ -88,7 +88,7 @@ class button(pygame.sprite.Sprite):
                 return True
             
         return False
-        
+
 #define um botao para cada uma das personagens
 Aline_button = button('Aline.jpg',10,20)
 Rodrigo_button = button('Rodrigo.jpg',10,206)
@@ -125,6 +125,34 @@ def chute ():
     else:
         continue
         game = True
+
+#funcao que reseta a tela para seu estado original 
+def redesenhaWindow():
+        window.fill((255, 255, 255))
+        Aline_button.draw(window,(0,0,0))
+        Rodrigo_button.draw(window,(0,0,0)) 
+        Karina_button.draw(window,(0,0,0))
+        Ricardo_button.draw(window,(0,0,0))
+        Bruno_button.draw(window,(0,0,0))
+        Paula_button.draw(window,(0,0,0))
+        Fransisco_button.draw(window,(0,0,0))
+        Erica_button.draw(window,(0,0,0))
+        Sonia_button.draw(window,(0,0,0)) 
+        Felipe_button.draw(window,(0,0,0))
+        Julia_button.draw(window,(0,0,0))
+        Eduardo_button.draw(window,(0,0,0)) 
+        Mariana_button.draw(window,(0,0,0))
+        Pedro_button.draw(window,(0,0,0))
+        Gisele_button.draw(window,(0,0,0))
+        Juliana_button.draw(window,(0,0,0))
+        Robson_button.draw(window,(0,0,0))
+        Gabriel_button.draw(window,(0,0,0))
+        Nathalia_button.draw(window,(0,0,0))
+        Daniel_button.draw(window,(0,0,0))
+        Marcelo_button.draw(window,(0,0,0))
+        Joao_button.draw(window,(0,0,0))
+        Marta_button.draw(window,(0,0,0))
+        Renato_button.draw(window,(0,0,0))
 
 #tela inicial
 inicio_dir = os.path.join('assets','img','inicio.jpg')
