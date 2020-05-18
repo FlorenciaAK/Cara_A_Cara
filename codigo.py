@@ -1,3 +1,5 @@
+'''Jogo: Cara A Cara 
+Autores: Florencia , Gustavo Borges , Sophia '''
 # ===== Inicialização =====
 
 #importações necessárias
@@ -159,7 +161,7 @@ inicio_dir = os.path.join('assets','img','inicio.jpg')
 inicio_load = pygame.image.load(inicio_dir).convert()
 inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
 window.blit(inicio, (0,0))
- pygame.display.update()
+pygame.display.update()
 
 
 
