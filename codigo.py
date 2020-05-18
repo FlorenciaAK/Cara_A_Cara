@@ -1,3 +1,5 @@
+'''Jogo: Cara A Cara 
+Autores: Florencia , Gustavo Borges , Sophia '''
 # ===== Inicialização =====
 
 #importações necessárias
@@ -17,11 +19,18 @@ window = pygame.display.set_mode((LARGURA,ALTURA))
 #define o título da janela
 pygame.display.set_caption ("Cara a cara")
 
+#tela inicial
+inicio_dir = os.path.join('Cara_A_Cara','assets','img','inicio.jpeg')
+inicio_load = pygame.image.load(inicio_dir).convert()
+inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
+window.blit(inicio, (0,0))
+pygame.display.update()
 
 
-# ===== Loop principal =====
+
+# ------ Introducao -------
 nomes_jogadores = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"]
-jogador_escolhido_i = random.randint(0,len(nomes_jogaodes))
+jogador_escolhido_i = random.randint(0,len(nomes_jogadores))
 jogador_certo = nomes_jogadores [jogador_escolhido_i]
 
 class Carac:
@@ -115,17 +124,6 @@ Joao_button = button('Joao.jpg',510,206)
 Marta_button = button('Marta.jpg',510,392)
 Renato_button = button('Renato.jpg',510,578)
 
-
-#definindo funções:
-def chute ():
-    chute = input("Quem?:")
-    if chute == jogador_certo:
-        return ("Você acertou após {0} tentativas".format(contador))
-        game = False
-    else:
-        continue
-        game = True
-
 #funcao que reseta a tela para seu estado original 
 def redesenhaWindow():
         window.fill((255, 255, 255))
@@ -154,24 +152,19 @@ def redesenhaWindow():
         Marta_button.draw(window,(0,0,0))
         Renato_button.draw(window,(0,0,0))
 
-#tela inicial
-inicio_dir = os.path.join('assets','img','inicio.jpg')
-inicio_load = pygame.image.load(inicio_dir).convert()
-inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
-window.blit(inicio, (0,0))
- pygame.display.update()
 
-
-
+# ===== Loop principal =====
 #variável game que define que o jogo deve continuar
-game = True
-
+game = False
+#verifica se o jogador clicou em alguma tecta do teclado
+if event.type == pygame.KEYDOWN:
+    game = True 
 
 #inicia contador de tentativas
 contador = 1
 
 #continua o jogo enquanto game for True
-while game:
+while game == True:
     redesenhaWindow()
     pygame.display.update()
     #pygame.event.get() devolve uma lista com todos os eventos que ocorreram desde a última vez q a funçao foi chamada (get())
@@ -179,8 +172,6 @@ while game:
         #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
         if event.type == pygame.QUIT:
             game = False
-        #verifica se o jogador clicou em alguma tecta do teclado
-        if event.type == pygame.KEYDOWN:
         #Variavel da posicao do mause
         pos = pygame.mouse.get_pos()
         #Se o botao for apertado ocorre um evento 
