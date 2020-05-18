@@ -20,7 +20,7 @@ window = pygame.display.set_mode((LARGURA,ALTURA))
 pygame.display.set_caption ("Cara a cara")
 
 #tela inicial
-inicio_dir = os.path.join('Cara_A_Cara','assets','img','inicio.jpeg')
+inicio_dir = os.path.join('assets','img','inicio.jpeg')
 inicio_load = pygame.image.load(inicio_dir).convert()
 inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
 window.blit(inicio, (0,0))
@@ -45,14 +45,14 @@ class Carac:
         self.queixo = queixo
         self.acessorios = acessorios
 
-Rodrigo = Carac(masculino, clara, castanho, fechada, castanhos, nao, nao, pontudo, nao)
-Karina = Carac(feminino, negra, castanho, aberta, verdes, nao, nao, redondo, brincos)
-Ricardo = Carac(masculino, clara, preto, aberta, castanhos, nao, barba, redondo, nao)
-Bruno = Carac(masculino, clara, loiro, fechada, verdes, sim, barba, redondo, nao)
-Paula = Carac(feminino, clara, loiro, fechada, castanhos, nao, nao, redondo, batom)
-Fransisco = Carac(masculio, clara, castanho, aberta, azuis, nao, bigode, pontudo, nao)
-Erica = Carac(feminino, clara, loiro, fecada, azuis, sim, nao, redondo, chapeu)
-Sonia = Carac(feminino, clara, branco, fechada, verdes, sim, nao, pontudo, brinco)
+Rodrigo = Carac('masculino', 'clara', 'castanho', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'nao')
+Karina = Carac('feminino', 'negra', 'castanho', 'aberta', 'verdes', 'nao', 'nao', 'redondo', 'brincos')
+Ricardo = Carac('masculino', 'clara', 'preto', 'aberta', 'castanhos', 'nao', 'barba', 'redondo', 'nao')
+Bruno = Carac('masculino', 'clara', 'loiro', 'fechada', 'verdes', 'sim', 'barba', 'redondo', 'nao')
+Paula = Carac('feminino', 'clara', 'loiro', 'fechada', 'castanhos ', 'nao', 'nao', 'redondo', 'batom')
+Fransisco = Carac('masculio', 'clara', 'castanho', 'aberta', 'azuis', 'nao', 'bigode', 'pontudo', 'nao')
+Erica = Carac('feminino', 'clara', 'loiro', 'fecada', 'azuis', 'sim', 'nao', 'redondo', 'chapeu')
+Sonia = Carac('feminino', 'clara', 'branco', 'fechada', 'verdes', 'sim', 'nao', 'pontudo', 'brinco')
 Felipe = Carac(masculino, clara, nao, abeta, preto, oculos, bigode, pontudo, nao)
 Julia = Carac(feminino, clara, castanho, fechada, pretos, nao, nao, redondo, nao)
 Eduardo = Carac(masculino , clara, loiro, aberta, azuis, nao, nao, pontudo, chapeu)
