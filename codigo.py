@@ -88,6 +88,32 @@ class button(pygame.sprite.Sprite):
                 return True
             
         return False
+        
+#define um botao para cada uma das personagens
+Aline_button = button('Aline.jpg',10,20)
+Rodrigo_button = button('Rodrigo.jpg',10,206)
+Karina_button = button('Karina.jpg',10,392)
+Ricardo_button = button('Ricardo.jpg',10,578)
+Bruno_button = button('Bruno.jpg',110,20)
+Paula_button = button('Paula.jpg',110,206)
+Fransisco_button = button('Francisco.jpg',110,392)
+Erica_button = button('Erica.jpg',110,578)
+Sonia_button = button('Sonia.jpg',210,20)
+Felipe_button = button('Felipe.jpg',210,206)
+Julia_button = button('Julia.jpg',210,392)
+Eduardo_button = button('Eduardo.jpg',210,578)
+Mariana_button = button('Mariana.jpg',310,20)
+Pedro_button =button('Pedro.jpg',310,206)
+Gisele_button = button('Gisele.jpg',310,392)
+Juliana_button = button('Juliana.jpg',310,578)
+Robson_button = button('Robson.jpg',410,20)
+Gabriel_button = button('Gabriel.jpg',410,206)
+Nathalia_button = button('Nathalia.jpg',410,392)
+Daniel_button = button('Daniel.jpg',410,578)
+Marcelo_button =button('Marcelo.jpg',510,20)
+Joao_button = button('Joao.jpg',510,206)
+Marta_button = button('Marta.jpg',510,392)
+Renato_button = button('Renato.jpg',510,578)
 
 
 #definindo funções:
