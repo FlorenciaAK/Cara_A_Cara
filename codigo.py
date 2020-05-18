@@ -61,6 +61,17 @@ Joao = Carac(masculino,clara,branco,fechada,pretos,nao,nao,pontudo,chapeu)
 Marta = Carac(feminino,clara,preto,aberta,azuis,nao,nao,redondo,brinco)
 Renato = Carac(masculino,clara,preto,fechada,pretos,nao,nao,redondo,nao)
 
+
+#definindo funções:
+def chute ():
+    chute = input("Quem?:")
+    if chute == jogador_certo:
+        return ("Você acertou após {0} tentativas".format(contador))
+        game = False
+    else:
+        continue
+        game = True
+
 #tela inicial
 inicio_dir = path.join(path.dirname(__file__),'assets/img')
 inicio_load = pygame.image.load(path.join(inicio_dir, 'inicio.png')).convert()
@@ -81,7 +92,7 @@ while game:
     for event in pygame.event.get():
         #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
         if event.type == pygame.QUIT:
-                game = False
+            game = False
         #verifica se o jogador clicou em alguma tecta do teclado
         if event.type == pygame.key.get_press():
             
@@ -93,15 +104,8 @@ while game:
     #perguntar se o jogador que chutar um nome
     
     desejo = input("Você quer chutar algum nome? s ou n: ")
-        if desejo == "s":
-            def chute ():
-                chute = input("Quem?:")
-                if chute == jogador_certo:
-                    return ("Você acertou após {0} tentativas".format(contador))
-                    game = False
-                else:
-                    continue
-                    game = True
+    if desejo == "s":
+        chute()
 
     #mostrar nova tela que foi desenhada ao usuário
     pygame.display.update()
