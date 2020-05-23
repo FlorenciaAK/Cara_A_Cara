@@ -23,15 +23,15 @@ LARGURA = 1400
 ALTURA = 750
 
 #----------uniformiza o tamanho dos Botoes 
-largura_botao =90
-altura_botao =150
+largura_botao = 90
+altura_botao = 150
 
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
     if not som in cache_sons:
         try:
-            caminho = os.path.join(os.path.dirname(_file_ ), som)
+            caminho = os.path.join(os.path.dirname(__file__), som)
             cache_sons[som] = pygame.mixer.Sound(caminho)
             cache_sons[som].set_volume(0.1)
 
@@ -46,7 +46,7 @@ cache_imagens = {}
 def carrega_imagens (imagem):
     if not imagem in cache_imagens:
         try:
-            caminho = os.path.join(os.path.dirname(_file_ ), imagem)
+            caminho = os.path.join(os.path.dirname(__file__), imagem)
             cache_imagens[imagem] = pygame.image.load(caminho).convert_alpha()
 
         except pygame.error:
@@ -57,7 +57,7 @@ def carrega_imagens (imagem):
 
 #----------classe que atribui características as personagens
 class Carac:
-    def _init_ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
+    def __init__ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
         self.sexo = sexo
         self.cor_pele = cor_pele
         self.cor_cabelo = cor_cabelo
@@ -68,39 +68,15 @@ class Carac:
         self.queixo = queixo
         self.acessorios = acessorios
 
-#----------criação dos objetos tipo Carac (personagens)
-Rodrigo = Carac('masculino', 'clara', 'castanho', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'nao')
-Karina = Carac('feminino', 'negra', 'castanho', 'aberta', 'verdes', 'nao', 'nao', 'redondo', 'brincos')
-Ricardo = Carac('masculino', 'clara', 'preto', 'aberta', 'castanhos', 'nao', 'barba', 'redondo', 'nao')
-Bruno = Carac('masculino', 'clara', 'loiro', 'fechada', 'verdes', 'sim', 'barba', 'redondo', 'nao')
-Paula = Carac('feminino', 'clara', 'loiro', 'fechada', 'castanhos ', 'nao', 'nao', 'redondo', 'batom')
-Fransisco = Carac('masculio', 'clara', 'castanho', 'aberta', 'azuis', 'nao', 'bigode', 'pontudo', 'nao')
-Erica = Carac('feminino', 'clara', 'loiro', 'fecada', 'azuis', 'sim', 'nao', 'redondo', 'chapeu')
-Sonia = Carac('feminino', 'clara', 'branco', 'fechada', 'verdes', 'sim', 'nao', 'pontudo', 'brinco')
-Felipe = Carac('masculino', 'clara', 'nao', 'abeta', 'preto', 'oculos', 'bigode', 'pontudo', 'nao')
-Julia = Carac('feminino', 'clara', 'castanho', 'fechada', 'pretos', 'nao', 'nao', 'redondo', 'nao')
-Eduardo = Carac('masculino' , 'clara', 'loiro', 'aberta', 'azuis', 'nao', 'nao', 'pontudo', 'chapeu')
-Mariana = Carac('feminino', 'clara', 'branco', 'fechada', 'castanhos', 'nao', 'nao', 'redondo', 'brinco')
-Pedro = Carac('masculino', 'clara', 'preto', 'fechada', 'verdes', 'nao', 'nao', 'redondo', 'bone')
-Gisele = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'nao', 'redondo', 'brincos')
-Juliana = Carac('feminino', 'clara', 'preto', 'aberta', 'pretos', 'nao', 'nao', 'redondo', 'brincos')
-Robson = Carac('masculino', 'negra', 'preto', 'fechada', 'castanho', 'sim', 'nao', 'redondo', 'nao')
-Aline = Carac('feminino', 'clara', 'ruivo', 'aberta', 'verdes', 'sim', 'nao', 'pontudo', 'nao')
-Gabriel = Carac('masculino', 'negra', 'preto', 'aberta', 'castanhos', 'nao', 'nao', 'pontudo', 'faixa')
-Nathalia = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'brincos')
-Daniel = Carac('masculino','clara','ruivo','aberta','castanhos','nao','barba','redondo','nao')
-Marcelo = Carac('masculino','clara','nao','aberta','pretos','nao','barba','redondo','nao')
-Joao = Carac('masculino','clara','branco','fechada','pretos','nao','nao','pontudo','chapeu')
-Marta = Carac('feminino','clara','preto','aberta','azuis','nao','nao','redondo','brinco')
-Renato = Carac('masculino','clara','preto','fechada','pretos','nao','nao','redondo','nao')
-
 #----------classe que cria os botões das personagens
-class button(pygame.sprite.Sprite):
-    def _init_(self,nome_da_imagen, x,y):
+class Button(pygame.sprite.Sprite):
+    def __init__(self,nome_da_imagem, x,y):
+
         #----------Define o botão importando as sprites das personagens
-        arquivo = os.path.join('assets/img',nome_da_imagen)
+        arquivo = os.path.join("Cara_A_Cara/assets/img",nome_da_imagem)
         self.image = carrega_imagens(arquivo)
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
+        #----------ponto superior esquerdo da imagem
         self.x = x
         self.y = y
 
@@ -119,32 +95,6 @@ class button(pygame.sprite.Sprite):
                 return True
             
         return False
-
-#----------criação dos objetos do tipo button, que define um botao para cada uma das personagens
-Aline_button = button('Aline.jpg',10,20)
-Rodrigo_button = button('Rodrigo.jpg',10,206)
-Karina_button = button('Karina.jpg',10,392)
-Ricardo_button = button('Ricardo.jpg',10,578)
-Bruno_button = button('Bruno.jpg',110,20)
-Paula_button = button('Paula.jpg',110,206)
-Fransisco_button = button('Francisco.jpg',110,392)
-Erica_button = button('Erica.jpg',110,578)
-Sonia_button = button('Sonia.jpg',210,20)
-Felipe_button = button('Felipe.jpg',210,206)
-Julia_button = button('Julia.jpg',210,392)
-Eduardo_button = button('Eduardo.jpg',210,578)
-Mariana_button = button('Mariana.jpg',310,20)
-Pedro_button =button('Pedro.jpg',310,206)
-Gisele_button = button('Gisele.jpg',310,392)
-Juliana_button = button('Juliana.jpg',310,578)
-Robson_button = button('Robson.jpg',410,20)
-Gabriel_button = button('Gabriel.jpg',410,206)
-Nathalia_button = button('Nathalia.jpg',410,392)
-Daniel_button = button('Daniel.jpg',410,578)
-Marcelo_button =button('Marcelo.jpg',510,20)
-Joao_button = button('Joao.jpg',510,206)
-Marta_button = button('Marta.jpg',510,392)
-Renato_button = button('Renato.jpg',510,578)
 
 #----------função que reseta a tela para seu estado original 
 def redesenhaWindow():
@@ -174,7 +124,7 @@ def redesenhaWindow():
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
 
-#----------funçao principal:
+#----------função principal:
 def main():  
     """Rotina principal do jogo Cara A Cara de pygame"""
 
@@ -186,6 +136,59 @@ def main():
 
     #----------cria título do jogo
     pygame.display.set_caption("CARA A CARA")
+
+    #----------criação dos objetos----------
+    #----------criação dos objetos tipo Carac (personagens)
+    Rodrigo = Carac('masculino', 'clara', 'castanho', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'nao')
+    Karina = Carac('feminino', 'negra', 'castanho', 'aberta', 'verdes', 'nao', 'nao', 'redondo', 'brincos')
+    Ricardo = Carac('masculino', 'clara', 'preto', 'aberta', 'castanhos', 'nao', 'barba', 'redondo', 'nao')
+    Bruno = Carac('masculino', 'clara', 'loiro', 'fechada', 'verdes', 'sim', 'barba', 'redondo', 'nao')
+    Paula = Carac('feminino', 'clara', 'loiro', 'fechada', 'castanhos ', 'nao', 'nao', 'redondo', 'batom')
+    Fransisco = Carac('masculino', 'clara', 'castanho', 'aberta', 'azuis', 'nao', 'bigode', 'pontudo', 'nao')
+    Erica = Carac('feminino', 'clara', 'loiro', 'fecada', 'azuis', 'sim', 'nao', 'redondo', 'chapeu')
+    Sonia = Carac('feminino', 'clara', 'branco', 'fechada', 'verdes', 'sim', 'nao', 'pontudo', 'brinco')
+    Felipe = Carac('masculino', 'clara', 'nao', 'abeta', 'preto', 'oculos', 'bigode', 'pontudo', 'nao')
+    Julia = Carac('feminino', 'clara', 'castanho', 'fechada', 'pretos', 'nao', 'nao', 'redondo', 'nao')
+    Eduardo = Carac('masculino' , 'clara', 'loiro', 'aberta', 'azuis', 'nao', 'nao', 'pontudo', 'chapeu')
+    Mariana = Carac('feminino', 'clara', 'branco', 'fechada', 'castanhos', 'nao', 'nao', 'redondo', 'brinco')
+    Pedro = Carac('masculino', 'clara', 'preto', 'fechada', 'verdes', 'nao', 'nao', 'redondo', 'bone')
+    Gisele = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'nao', 'redondo', 'brincos')
+    Juliana = Carac('feminino', 'clara', 'preto', 'aberta', 'pretos', 'nao', 'nao', 'redondo', 'brincos')
+    Robson = Carac('masculino', 'negra', 'preto', 'fechada', 'castanho', 'sim', 'nao', 'redondo', 'nao')
+    Aline = Carac('feminino', 'clara', 'ruivo', 'aberta', 'verdes', 'sim', 'nao', 'pontudo', 'nao')
+    Gabriel = Carac('masculino', 'negra', 'preto', 'aberta', 'castanhos', 'nao', 'nao', 'pontudo', 'faixa')
+    Nathalia = Carac('feminino', 'negra', 'preto', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'brincos')
+    Daniel = Carac('masculino','clara','ruivo','aberta','castanhos','nao','barba','redondo','nao')
+    Marcelo = Carac('masculino','clara','nao','aberta','pretos','nao','barba','redondo','nao')
+    Joao = Carac('masculino','clara','branco','fechada','pretos','nao','nao','pontudo','chapeu')
+    Marta = Carac('feminino','clara','preto','aberta','azuis','nao','nao','redondo','brinco')
+    Renato = Carac('masculino','clara','preto','fechada','pretos','nao','nao','redondo','nao')
+
+    #----------criação dos objetos do tipo button, que define um botao para cada uma das personagens
+    Aline_button = Button('Aline.jpg',10,20)
+    Rodrigo_button = Button('Rodrigo.jpg',10,206)
+    Karina_button = Button('Karina.jpg',10,392)
+    Ricardo_button = Button('Ricardo.jpg',10,578)
+    Bruno_button = Button('Bruno.jpg',110,20)
+    Paula_button = Button('Paula.jpg',110,206)
+    Fransisco_button = Button('Francisco.jpg',110,392)
+    Erica_button = Button('Erica.jpg',110,578)
+    Sonia_button = Button('Sonia.jpg',210,20)
+    Felipe_button = Button('Felipe.jpg',210,206)
+    Julia_button = Button('Julia.jpg',210,392)
+    Eduardo_button = Button('Eduardo.jpg',210,578)
+    Mariana_button = Button('Mariana.jpg',310,20)
+    Pedro_button =Button('Pedro.jpg',310,206)
+    Gisele_button = Button('Gisele.jpg',310,392)
+    Juliana_button = Button('Juliana.jpg',310,578)
+    Robson_button = Button('Robson.jpg',410,20)
+    Gabriel_button = Button('Gabriel.jpg',410,206)
+    Nathalia_button = Button('Nathalia.jpg',410,392)
+    Daniel_button = Button('Daniel.jpg',410,578)
+    Marcelo_button = Button('Marcelo.jpg',510,20)
+    Joao_button = Button('Joao.jpg',510,206)
+    Marta_button = Button('Marta.jpg',510,392)
+    Renato_button = Button('Renato.jpg',510,578)
 
     #----------musica de fundo:
     arquivo = os.path.join("assets/sons", "ghost_town.ogg")
@@ -202,7 +205,7 @@ def main():
     pygame.display.update() 
 
     #----------variável que define quando o jogo acaba
-    game = False
+    game = True
 
     #----------variável de FPS máxima em Hz
     FPS = 60
@@ -211,15 +214,15 @@ def main():
     pos = pygame.mouse.get_pos()
 
     # #----------verifica se o jogador clicou em alguma tecla do teclado
-    # if event.type == pygame.KEYDOWN:
-    #     game = True 
+    if event.type == pygame.KEYDOWN:
+        game = True 
 
     #----------inicia contador de tentativas
     contador = 1
 
     # ===== Loop principal =====
 
-    while game == True:
+    while game:
         #----------garante uma FPS máxima de 60 Hz
         delta_time = clock.tick(FPS)
 
@@ -301,5 +304,5 @@ def main():
         pygame.display.flip()
 
 #----------função main
-if _name_ == ' _main_': 
+if __name__ == ' __main__': 
     main()
