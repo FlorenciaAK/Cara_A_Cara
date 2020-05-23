@@ -26,15 +26,38 @@ ALTURA = 750
 largura_botao =90
 altura_botao =150
 
+#----------função que da load nos sons do jogo:
+cache_sons = {}  
+def carrega_sons (som):
+    if not som in cache_sons:
+        try:
+            caminho = os.path.join(os.path.dirname(_file_ ), som)
+            cache_sons[som] = pygame.mixer.Sound(caminho)
+            cache_sons[som].set_volume(0.1)
 
-#----------INTRODUÇÃO----------
+        except pygame.error:
+            print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
+            sys.exit()
 
-#----------nomes das personagens
-nomes_jogadores = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"]
+        return cache_sons[som]
+
+#----------função que da load nas imagens do jogo:
+cache_imagens = {}  
+def carrega_imagens (imagem):
+    if not imagem in cache_imagens:
+        try:
+            caminho = os.path.join(os.path.dirname(_file_ ), imagem)
+            cache_imagens[imagem] = pygame.image.load(caminho).convert_alpha()
+
+        except pygame.error:
+            print('Erro ao tentar load: {0}'.format(imagem))
+            sys.exit()
+
+        return cache_imagens[imagem]
 
 #----------classe que atribui características as personagens
 class Carac:
-    def __init__ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
+    def _init_ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
         self.sexo = sexo
         self.cor_pele = cor_pele
         self.cor_cabelo = cor_cabelo
@@ -73,10 +96,10 @@ Renato = Carac('masculino','clara','preto','fechada','pretos','nao','nao','redon
 
 #----------classe que cria os botões das personagens
 class button(pygame.sprite.Sprite):
-    def __init__(self,nome_da_imagen, x,y):
-        #Define o botao importando as sprites das personagens
-        self.image = os.path.join('assets/img',nome_da_imagen)
-        self.image = pygame.image.load(self.image).convert_alpha()
+    def _init_(self,nome_da_imagen, x,y):
+        #----------Define o botão importando as sprites das personagens
+        arquivo = os.path.join('assets/img',nome_da_imagen)
+        self.image = carrega_imagens(arquivo)
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
         self.x = x
         self.y = y
@@ -151,21 +174,6 @@ def redesenhaWindow():
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
 
-#----------função que da load nos sons do jogo:
-cache_sons = {}  
-def carrega_sons (som):
-    if not som in cache_sons:
-        try:
-            caminho = os.path.join(os.path.dirname(__file__ ), som)
-            cache_sons[som] = pygame.mixer.Sound(caminho)
-            cache_sons[som].set_volume(0.1)
-
-        except pygame.error:
-            print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
-            sys.exit()
-
-        return cache_sons[som]
-
 #----------funçao principal:
 def main():  
     """Rotina principal do jogo Cara A Cara de pygame"""
@@ -181,7 +189,7 @@ def main():
 
     #----------musica de fundo:
     arquivo = os.path.join("assets/sons", "ghost_town.ogg")
-    caminho = os.path.join(os.path.dirname(__file__ ), arquivo)
+    caminho = os.path.join(os.path.dirname(_file_ ), arquivo)
     pygame.mixer.music.load(caminho)
     pygame.mixer.set_volume(0.3)
     pygame.mixer.music.play(-1)
@@ -219,9 +227,11 @@ def main():
         redesenhaWindow()
         pygame.display.update()
 
-        #----------jogadores sorteados
-        jogador_sorteio_i = random.randint(0,len(nomes_jogadores))
-        jogador_escolhido = nomes_jogadores [jogador_sorteio_i]
+        #----------nomes das personagens
+        nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
+        #----------personagens sorteados
+        personagem_sorteio_i = random.randint(0,len(nomes_personagens))
+        personagem_escolhido = nomes_personagens [personagem_sorteio_i]
 
         #----------coleta de eventos
         eventos = pygame.event.get()
@@ -291,5 +301,5 @@ def main():
         pygame.display.flip()
 
 #----------função main
-if __name__ == ' __main__': 
+if _name_ == ' _main_': 
     main()
