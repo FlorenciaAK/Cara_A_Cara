@@ -10,6 +10,13 @@ import os
 #inicio pacote do pygame
 pygame.init()
 
+#musica de fundo:
+arquivo = os.path.join("nome da pasta", "nome do arquivo.ogg")
+caminho = os.path.join(os.path.dirname(__file__ ), arquivo)
+pygame.mixer.music.load(caminho)
+pygame.mixer.set_volume(0.3)
+pygame.mixer.music.play(-1)
+
 # ----- Gera tela principal
 #cria tela com 1400 pixels de largura e 750 pixels de altura
 LARGURA = 1400
@@ -152,99 +159,120 @@ def redesenhaWindow():
         Marta_button.draw(window,(0,0,0))
         Renato_button.draw(window,(0,0,0))
 
+#funçao principal:
+def main():  
+    """Rotina principal do jogo Cara A Cara de pygame"""
 
-# ===== Loop principal =====
-#variável game que define que o jogo deve continuar
-game = False
-#verifica se o jogador clicou em alguma tecta do teclado
-if event.type == pygame.KEYDOWN:
-    game = True 
+    #musica:
+    cache_sons = {}  
+    def carrega_sons (som):
+        if not som in cache_sons     
+            try:
+                caminho = os.path.join(os.path.dirname(__file__ ), som)
+                cache_sons[som] = pygame.mixer.Sound(caminho)
+            except pygame.error:
+                print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
+                sys.exit()
+        return cache_sons[som]
 
-#inicia contador de tentativas
-contador = 1
+    # ===== Loop principal =====
+    #variável game que define que o jogo deve continuar
+    game = False
+    #verifica se o jogador clicou em alguma tecta do teclado
+    if event.type == pygame.KEYDOWN:
+        game = True 
 
-#continua o jogo enquanto game for True
-while game == True:
-    redesenhaWindow()
-    pygame.display.update()
-    #pygame.event.get() devolve uma lista com todos os eventos que ocorreram desde a última vez q a funçao foi chamada (get())
-    for event in pygame.event.get():
-        #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
-        if event.type == pygame.QUIT:
-            game = False
-        #Variavel da posicao do mause
-        pos = pygame.mouse.get_pos()
-        #Se o botao for apertado ocorre um evento 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if Aline_button.isOver(pos):
-                print('botao clicado')
-            if Rodrigo_button.isOver(pos):
-                print('botao clicado')
-            if Karina_button.isOver(pos):
-                print('botao clicado')
-            if Ricardo_button.isOver(pos):
-                print('botao clicado')
-            if Bruno_button.isOver(pos):
-                print('botao clicado')
-            if Paula_button.isOver(pos):
-                print('botao clicado')
-            if Fransisco_button.isOver(pos):
-                print('botao clicado')
-            if Erica_button.isOver(pos):
-                print('botao clicado')
-            if Sonia_button.isOver(pos):
-                print('botao clicado')
-            if Felipe_button.isOver(pos):
-                print('botao clicado')
-            if Julia_button.isOver(pos):
-                print('botao clicado')
-            if Eduardo_button.isOver(pos):
-                print('botao clicado')
-            if Mariana_button.isOver(pos):
-                print('botao clicado')
-            if Pedro_button.isOver(pos):
-                print('botao clicado')
-            if Gisele_button.isOver(pos):
-                print('botao clicado')
-            if Juliana_button.isOver(pos):
-                print('botao clicado')
-            if Robson_button.isOver(pos):
-                print('botao clicado')
-            if Gabriel_button.isOver(pos):
-                print('botao clicado')
-            if Nathalia_button.isOver(pos):
-                print('botao clicado')
-            if Daniel_button.isOver(pos):
-                print('botao clicado')
-            if Marcelo_button.isOver(pos):
-                print('botao clicado')
-            if Joao_button.isOver(pos):
-                print('botao clicado')
-            if Marta_button.isOver(pos):
-                print('botao clicado')
-            if Renato_button.isOver(pos):
-                print('botao clicado')
-            
+    #inicia contador de tentativas
+    contador = 1
 
-    #preenche tela com cor branca
-    window.fill((255, 255, 255))
+    #continua o jogo enquanto game for True
+    while game == True:
+        redesenhaWindow()
+        pygame.display.update()
+        #pygame.event.get() devolve uma lista com todos os eventos que ocorreram desde a última vez q a funçao foi chamada (get())
+        for event in pygame.event.get():
+            #verifica se o tipo de evento é pygame.QUIT (se o usuário clicou no botão de fechar a janela)
+            if event.type == pygame.QUIT or evento.type == pygame.KEYDOWN and evento.key == pygame.K_ESCAPE: 
+                game = False
+                pygame.quit()              
+                sys.exit() 
 
-    
-    #perguntar se o jogador que chutar um nome
-    
-    desejo = input("Você quer chutar algum nome? s ou n: ")
-    if desejo == "s":
-        chute()
+            #Variavel da posicao do mause
+            pos = pygame.mouse.get_pos()
+            #Se o botao for apertado ocorre um evento 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if Aline_button.isOver(pos):
+                    print('botao clicado')
+                if Rodrigo_button.isOver(pos):
+                    print('botao clicado')
+                if Karina_button.isOver(pos):
+                    print('botao clicado')
+                if Ricardo_button.isOver(pos):
+                    print('botao clicado')
+                if Bruno_button.isOver(pos):
+                    print('botao clicado')
+                if Paula_button.isOver(pos):
+                    print('botao clicado')
+                if Fransisco_button.isOver(pos):
+                    print('botao clicado')
+                if Erica_button.isOver(pos):
+                    print('botao clicado')
+                if Sonia_button.isOver(pos):
+                    print('botao clicado')
+                if Felipe_button.isOver(pos):
+                    print('botao clicado')
+                if Julia_button.isOver(pos):
+                    print('botao clicado')
+                if Eduardo_button.isOver(pos):
+                    print('botao clicado')
+                if Mariana_button.isOver(pos):
+                    print('botao clicado')
+                if Pedro_button.isOver(pos):
+                    print('botao clicado')
+                if Gisele_button.isOver(pos):
+                    print('botao clicado')
+                if Juliana_button.isOver(pos):
+                    print('botao clicado')
+                if Robson_button.isOver(pos):
+                    print('botao clicado')
+                if Gabriel_button.isOver(pos):
+                    print('botao clicado')
+                if Nathalia_button.isOver(pos):
+                    print('botao clicado')
+                if Daniel_button.isOver(pos):
+                    print('botao clicado')
+                if Marcelo_button.isOver(pos):
+                    print('botao clicado')
+                if Joao_button.isOver(pos):
+                    print('botao clicado')
+                if Marta_button.isOver(pos):
+                    print('botao clicado')
+                if Renato_button.isOver(pos):
+                    print('botao clicado')
+                
 
-    #mostrar nova tela que foi desenhada ao usuário
-    pygame.display.update()
+        #preenche tela com cor branca
+        window.fill((255, 255, 255))
+
+        
+        #perguntar se o jogador que chutar um nome
+        
+        desejo = input("Você quer chutar algum nome? s ou n: ")
+        if desejo == "s":
+            chute()
+
+        #mostrar nova tela que foi desenhada ao usuário
+        pygame.display.update()
 
 
 
 
 
-# ===== Finalização =====
+    # ===== Finalização =====
 
-#print ("você ganhou depois de {0} tentativas".format(contador))
-#finaliza o pygame (fecha todos os recursos que abriu)
-pygame.quit()
+    #print ("você ganhou depois de {0} tentativas".format(contador))
+    #finaliza o pygame (fecha todos os recursos que abriu)
+    pygame.quit()
+
+    if __name__ == ' __main__': 
+        main()
