@@ -33,7 +33,7 @@ def carrega_sons (som):
         try:
             caminho = os.path.join(os.path.dirname(__file__), som)
             cache_sons[som] = pygame.mixer.Sound(caminho)
-            cache_sons[som].set_volume(0.1)
+            cache_sons[som].set_volume(0.05)
 
         except pygame.error:
             print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
@@ -73,7 +73,7 @@ class Button(pygame.sprite.Sprite):
     def __init__(self,nome_da_imagem, x,y):
 
         #----------Define o botão importando as sprites das personagens
-        arquivo = os.path.join("Cara_A_Cara/assets/img",nome_da_imagem)
+        arquivo = os.path.join("assets","img",nome_da_imagem)
         self.image = carrega_imagens(arquivo)
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
         #----------ponto superior esquerdo da imagem
@@ -85,7 +85,7 @@ class Button(pygame.sprite.Sprite):
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,largura_botao+4,altura_botao+4),0)
             
-        window.blit(self.image,[self.x,self.y])
+        win.blit(self.image,[self.x,self.y])
         
 
     def isOver(self, pos):
@@ -95,34 +95,6 @@ class Button(pygame.sprite.Sprite):
                 return True
             
         return False
-
-#----------função que reseta a tela para seu estado original 
-def redesenhaWindow():
-        window.fill(BRANCO)
-        Aline_button.draw(window,PRETO)
-        Rodrigo_button.draw(window,PRETO) 
-        Karina_button.draw(window,PRETO)
-        Ricardo_button.draw(window,PRETO)
-        Bruno_button.draw(window,PRETO)
-        Paula_button.draw(window,PRETO)
-        Fransisco_button.draw(window,PRETO)
-        Erica_button.draw(window,PRETO)
-        Sonia_button.draw(window,PRETO) 
-        Felipe_button.draw(window,PRETO)
-        Julia_button.draw(window,PRETO)
-        Eduardo_button.draw(window,PRETO) 
-        Mariana_button.draw(window,PRETO)
-        Pedro_button.draw(window,PRETO)
-        Gisele_button.draw(window,PRETO)
-        Juliana_button.draw(window,PRETO)
-        Robson_button.draw(window,PRETO)
-        Gabriel_button.draw(window,PRETO)
-        Nathalia_button.draw(window,PRETO)
-        Daniel_button.draw(window,PRETO)
-        Marcelo_button.draw(window,PRETO)
-        Joao_button.draw(window,PRETO)
-        Marta_button.draw(window,PRETO)
-        Renato_button.draw(window,PRETO)
 
 #----------função principal:
 def main():  
@@ -171,7 +143,7 @@ def main():
     Ricardo_button = Button('Ricardo.jpg',10,578)
     Bruno_button = Button('Bruno.jpg',110,20)
     Paula_button = Button('Paula.jpg',110,206)
-    Fransisco_button = Button('Francisco.jpg',110,392)
+    Francisco_button = Button('Francisco.jpg',110,392)
     Erica_button = Button('Erica.jpg',110,578)
     Sonia_button = Button('Sonia.jpg',210,20)
     Felipe_button = Button('Felipe.jpg',210,206)
@@ -191,56 +163,81 @@ def main():
     Renato_button = Button('Renato.jpg',510,578)
 
     #----------musica de fundo:
-    arquivo = os.path.join("assets/sons", "ghost_town.ogg")
-    caminho = os.path.join(os.path.dirname(_file_ ), arquivo)
+    arquivo = os.path.join("assets","sons", "ghost_town.ogg")
+    caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
-    pygame.mixer.set_volume(0.3)
+    pygame.mixer.music.set_volume(1)
     pygame.mixer.music.play(-1)
 
     #----------tela inicial
-    inicio_dir = os.path.join("assets/img','inicio.jpeg")
+    inicio_dir = os.path.join("assets","img",'Renato.jpg')  #########criar imgame de inicio
     inicio_load = pygame.image.load(inicio_dir).convert()
     inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
     window.blit(inicio, (0,0))
     pygame.display.update() 
 
+    #----------nomes das personagens
+    nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
+    #----------personagens sorteados
+    personagem_sorteio_i = random.randrange(0,len(nomes_personagens))
+    personagem_escolhido = nomes_personagens [personagem_sorteio_i]
+
+    #----------variável que armazena som quando o X é adicionado
+
     #----------variável que define quando o jogo acaba
     game = True
 
-    #----------variável de FPS máxima em Hz
-    FPS = 60
-
-    #----------variavel da posicao do mouse
-    pos = pygame.mouse.get_pos()
-
-    # #----------verifica se o jogador clicou em alguma tecla do teclado
-    if event.type == pygame.KEYDOWN:
-        game = True 
+    #----------verifica se o jogador clicou em alguma tecla do teclado pra começar o jogo
+    while pygame.event.wait().type != pygame.KEYDOWN:
+        pygame.display.flip()
 
     #----------inicia contador de tentativas
     contador = 1
 
+    #----------objeto para controle da atualização de imagens
+    clock = pygame.time.Clock()
+
     # ===== Loop principal =====
-
     while game:
-        #----------garante uma FPS máxima de 60 Hz
-        delta_time = clock.tick(FPS)
-
         #----------chamando a função que redesenha todos os botões
-        redesenhaWindow()
+        window.fill(BRANCO)
+
+        Aline_button.draw(window,PRETO)
+        Rodrigo_button.draw(window,PRETO) 
+        Karina_button.draw(window,PRETO)
+        Ricardo_button.draw(window,PRETO)
+        Bruno_button.draw(window,PRETO)
+        Paula_button.draw(window,PRETO)
+        Francisco_button.draw(window,PRETO)
+        Erica_button.draw(window,PRETO)
+        Sonia_button.draw(window,PRETO) 
+        Felipe_button.draw(window,PRETO)
+        Julia_button.draw(window,PRETO)
+        Eduardo_button.draw(window,PRETO) 
+        Mariana_button.draw(window,PRETO)
+        Pedro_button.draw(window,PRETO)
+        Gisele_button.draw(window,PRETO)
+        Juliana_button.draw(window,PRETO)
+        Robson_button.draw(window,PRETO)
+        Gabriel_button.draw(window,PRETO)
+        Nathalia_button.draw(window,PRETO)
+        Daniel_button.draw(window,PRETO)
+        Marcelo_button.draw(window,PRETO)
+        Joao_button.draw(window,PRETO)
+        Marta_button.draw(window,PRETO)
+        Renato_button.draw(window,PRETO)
+        
+        #----------função que atualiza a tela
         pygame.display.update()
 
-        #----------nomes das personagens
-        nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
-        #----------personagens sorteados
-        personagem_sorteio_i = random.randint(0,len(nomes_personagens))
-        personagem_escolhido = nomes_personagens [personagem_sorteio_i]
+        #----------variavel da posicao do mouse
+        pos = pygame.mouse.get_pos()
 
         #----------coleta de eventos
         eventos = pygame.event.get()
-        for evento in eventos:
+        for event in eventos:
             #----------evento para sair do jogo
-            if event.type == pygame.QUIT or (evento.type == pygame.KEYDOWN and evento.key == pygame.K_ESCAPE): 
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
                 game = False
                 pygame.quit()              
                 sys.exit() 
@@ -259,7 +256,7 @@ def main():
                     print('botao clicado')
                 if Paula_button.isOver(pos):
                     print('botao clicado')
-                if Fransisco_button.isOver(pos):
+                if Francisco_button.isOver(pos):
                     print('botao clicado')
                 if Erica_button.isOver(pos):
                     print('botao clicado')
@@ -304,5 +301,5 @@ def main():
         pygame.display.flip()
 
 #----------função main
-if __name__ == ' __main__': 
+if __name__ == '__main__': 
     main()
