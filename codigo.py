@@ -223,6 +223,22 @@ def main():
 
     #----------variável que define quando o jogo acaba
     game = True
+    
+    #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
+    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
+        #----------variavel da posicao do mouse
+        pos = pygame.mouse.get_pos()
+        if Inicio.isOver(pos):
+            game = True
+        if Regras.isOver(pos):
+            #----------tela de regrAS
+            inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
+            inicio_load = pygame.image.load(inicio_dir).convert()
+            inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
+            window.blit(inicio, (0,0))
+            #----------verifica se o jogador clicou em alguma tecla para iniciar o jogo 
+            while pygame.event.wait().type != pygame.KEYDOWN:
+                game = True
 
     #----------verifica se o jogador clicou em alguma tecla do teclado pra começar o jogo
     while pygame.event.wait().type != pygame.KEYDOWN:
