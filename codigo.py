@@ -223,7 +223,7 @@ def main():
 
     #----------variável que define quando o jogo acaba
     game = True
-    
+
     #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
     while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
         #----------variavel da posicao do mouse
@@ -248,10 +248,12 @@ def main():
     contador = 1
 
     #----------objeto para controle da atualização de imagens
+    FPS = 60
     clock = pygame.time.Clock()
 
     # ===== Loop principal =====
     while game:
+        clock.tick(FPS)
         #----------chamando a função que redesenha todos os botões
         window.fill(BRANCO)
 
