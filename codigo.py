@@ -222,7 +222,7 @@ def main():
     #----------variável que armazena som quando o X é adicionado
 
     #----------variável que define quando o jogo acaba
-    game = True
+    game = False
 
     #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
     while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
@@ -240,9 +240,6 @@ def main():
             while pygame.event.wait().type != pygame.KEYDOWN:
                 game = True
 
-    #----------verifica se o jogador clicou em alguma tecla do teclado pra começar o jogo
-    while pygame.event.wait().type != pygame.KEYDOWN:
-        pygame.display.flip()
 
     #----------inicia contador de tentativas
     contador = 1
