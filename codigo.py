@@ -255,8 +255,9 @@ def main():
     while game:
         clock.tick(FPS)
         #----------chamando a função que redesenha todos os botões
+        #----------preenche tela com cor branca
         window.fill(BRANCO)
-
+        #----------Desenha os botoes 
         Aline_button.draw(window,PRETO)
         Rodrigo_button.draw(window,PRETO) 
         Karina_button.draw(window,PRETO)
@@ -348,10 +349,6 @@ def main():
                 if Renato_button.isOver(pos):
                     print('botao clicado')
                 
-
-        #----------preenche tela com cor branca
-        window.fill(BRANCO)
-
         #----------atualiza a tela
         pygame.display.flip()
 
