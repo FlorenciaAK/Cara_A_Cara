@@ -191,7 +191,7 @@ def main():
     Joao_button = Button('Joao.jpg',510,206)
     Marta_button = Button('Marta.jpg',510,392)
     Renato_button = Button('Renato.jpg',510,578)
-    
+
     #----------criação dos objetos do tipo settings
     Regras = settings(VERMELHO, 150 , 300, 400, 200,'Regras') 
     Inicio = settings(VERDE, 850 , 300, 400, 200,'Iniciar')
@@ -204,10 +204,13 @@ def main():
     pygame.mixer.music.play(-1)
 
     #----------tela inicial
-    inicio_dir = os.path.join("assets","img",'Renato.jpg')  #########criar imgame de inicio
+    inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imgame de inicio
     inicio_load = pygame.image.load(inicio_dir).convert()
     inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
     window.blit(inicio, (0,0))
+    #----------Cria os Bottoes de Inicio e Regras
+    Regras.draw(window,PRETO)
+    Inicio.draw(window,PRETO)
     pygame.display.update() 
 
     #----------nomes das personagens
