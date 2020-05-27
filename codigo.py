@@ -95,7 +95,7 @@ class Button(pygame.sprite.Sprite):
                 return True
             
         return False
-        
+
 #----------classe que cria os botões das settings
 class settings():
     def __init__(self, color, x,y,width,height, text=''):
@@ -191,6 +191,10 @@ def main():
     Joao_button = Button('Joao.jpg',510,206)
     Marta_button = Button('Marta.jpg',510,392)
     Renato_button = Button('Renato.jpg',510,578)
+    
+    #----------criação dos objetos do tipo settings
+    Regras = settings(VERMELHO, 150 , 300, 400, 200,'Regras') 
+    Inicio = settings(VERDE, 850 , 300, 400, 200,'Iniciar')
 
     #----------musica de fundo:
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
