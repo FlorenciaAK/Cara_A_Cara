@@ -27,6 +27,10 @@ ALTURA = 750
 largura_botao = 90
 altura_botao = 150
 
+#----------tamanho rosto neutro
+largura_rosto = 250
+altura_rosto = 500
+
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -34,7 +38,7 @@ def carrega_sons (som):
         try:
             caminho = os.path.join(os.path.dirname(__file__), som)
             cache_sons[som] = pygame.mixer.Sound(caminho)
-            cache_sons[som].set_volume(0.05)
+            cache_sons[som].set_volume(0.5)
 
         except pygame.error:
             print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
@@ -328,52 +332,76 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Aline_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Rodrigo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Karina_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Ricardo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Bruno_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Paula_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Francisco_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Erica_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Sonia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Felipe_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Julia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Eduardo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Mariana_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Pedro_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Gisele_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Juliana_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Robson_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Gabriel_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Nathalia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Daniel_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Marcelo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Joao_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Marta_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Renato_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 
         #----------atualiza a tela
         pygame.display.flip()
