@@ -17,6 +17,7 @@ BRANCO = (255,255,255)
 VERMELHO = (255,0,0)
 PRETO = (0,0,0)
 VERDE = (0,255,0)
+AZUL = (0,0,255)
 
 #----------dimensões da tela
 LARGURA = 1400
@@ -200,7 +201,7 @@ def main():
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
-    pygame.mixer.music.set_volume(1)
+    pygame.mixer.music.set_volume(0.01)
     pygame.mixer.music.play(-1)
 
     #----------tela inicial
@@ -224,12 +225,26 @@ def main():
     #----------variável que define quando o jogo acaba
     game = False
 
+ #----------objeto para controle da atualização de imagens
+    FPS = 60
+    clock = pygame.time.Clock()
+
     #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
-    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
+    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:   ###precisa perguntar pro Luciano, nao sai do loop se clicar esc
+        pygame.init()
+        clock.tick(FPS)
         #----------variavel da posicao do mouse
         pos = pygame.mouse.get_pos()
-        if Inicio.isOver(pos):
-            game = True
+
+        #----------coleta de eventos
+        eventos = pygame.event.get()
+        for event in eventos:
+            #----------evento para sair do jogo
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
+                game = False
+                pygame.quit()              
+                sys.exit() 
+
         if Regras.isOver(pos):
             #----------tela de regrAS
             inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
@@ -239,14 +254,24 @@ def main():
             #----------verifica se o jogador clicou em alguma tecla para iniciar o jogo 
             while pygame.event.wait().type != pygame.KEYDOWN:
                 game = True
+                #----------coleta de eventos
+                eventos = pygame.event.get()
+                for event in eventos:
+                    #----------evento para sair do jogo
+                    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
+                        game = False
+                        pygame.quit()              
+                        sys.exit() 
 
+
+        if Inicio.isOver(pos):
+            game = True
+        
 
     #----------inicia contador de tentativas
     contador = 1
 
-    #----------objeto para controle da atualização de imagens
-    FPS = 60
-    clock = pygame.time.Clock()
+
 
     # ===== Loop principal =====
     while game:
