@@ -204,6 +204,10 @@ def main():
     pygame.mixer.music.set_volume(0.01)
     pygame.mixer.music.play(-1)
 
+    #----------barulhos:
+    arquivo_x = os.path.join("assets","sons", "nome_do_arquivo.ogg")
+    barulho_x = carrega_sons(arquivo_x)
+
     #----------tela inicial
     inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imgame de inicio
     inicio_load = pygame.image.load(inicio_dir).convert()
