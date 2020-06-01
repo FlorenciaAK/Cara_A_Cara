@@ -17,6 +17,7 @@ BRANCO = (255,255,255)
 VERMELHO = (255,0,0)
 PRETO = (0,0,0)
 VERDE = (0,255,0)
+AZUL = (0,0,255)
 
 #----------dimensões da tela
 LARGURA = 1400
@@ -26,6 +27,10 @@ ALTURA = 750
 largura_botao = 90
 altura_botao = 150
 
+#----------tamanho rosto neutro
+largura_rosto = 250
+altura_rosto = 500
+
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -33,7 +38,7 @@ def carrega_sons (som):
         try:
             caminho = os.path.join(os.path.dirname(__file__), som)
             cache_sons[som] = pygame.mixer.Sound(caminho)
-            cache_sons[som].set_volume(0.05)
+            cache_sons[som].set_volume(0.5)
 
         except pygame.error:
             print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
@@ -200,8 +205,12 @@ def main():
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
-    pygame.mixer.music.set_volume(1)
+    pygame.mixer.music.set_volume(0.01)
     pygame.mixer.music.play(-1)
+
+    #----------barulhos:
+    arquivo_x = os.path.join("assets","sons", "nome_do_arquivo.ogg")
+    barulho_x = carrega_sons(arquivo_x)
 
     #----------tela inicial
     inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imgame de inicio
@@ -224,12 +233,26 @@ def main():
     #----------variável que define quando o jogo acaba
     game = False
 
+ #----------objeto para controle da atualização de imagens
+    FPS = 60
+    clock = pygame.time.Clock()
+
     #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
-    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
+    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:   ###precisa perguntar pro Luciano, nao sai do loop se clicar esc
+        pygame.init()
+        clock.tick(FPS)
         #----------variavel da posicao do mouse
         pos = pygame.mouse.get_pos()
-        if Inicio.isOver(pos):
-            game = True
+
+        #----------coleta de eventos
+        eventos = pygame.event.get()
+        for event in eventos:
+            #----------evento para sair do jogo
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
+                game = False
+                pygame.quit()              
+                sys.exit() 
+
         if Regras.isOver(pos):
             #----------tela de regrAS
             inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
@@ -239,14 +262,24 @@ def main():
             #----------verifica se o jogador clicou em alguma tecla para iniciar o jogo 
             while pygame.event.wait().type != pygame.KEYDOWN:
                 game = True
+                #----------coleta de eventos
+                eventos = pygame.event.get()
+                for event in eventos:
+                    #----------evento para sair do jogo
+                    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
+                        game = False
+                        pygame.quit()              
+                        sys.exit() 
 
+
+        if Inicio.isOver(pos):
+            game = True
+        
 
     #----------inicia contador de tentativas
     contador = 1
 
-    #----------objeto para controle da atualização de imagens
-    FPS = 60
-    clock = pygame.time.Clock()
+
 
     # ===== Loop principal =====
     while game:
@@ -299,52 +332,76 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Aline_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Rodrigo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Karina_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Ricardo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Bruno_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Paula_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Francisco_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Erica_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Sonia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Felipe_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Julia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Eduardo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Mariana_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Pedro_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Gisele_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Juliana_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Robson_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Gabriel_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Nathalia_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Daniel_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Marcelo_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Joao_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Marta_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 if Renato_button.isOver(pos):
                     print('botao clicado')
+                    barulho_x.play()
                 
         #----------atualiza a tela
         pygame.display.flip()
