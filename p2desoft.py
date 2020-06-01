@@ -27,6 +27,12 @@ ALTURA = 750
 largura_botao = 90
 altura_botao = 150
 
+
+
+
+
+
+
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -34,7 +40,7 @@ def carrega_sons (som):
         try:
             caminho = os.path.join(os.path.dirname(__file__), som)
             cache_sons[som] = pygame.mixer.Sound(caminho)
-            cache_sons[som].set_volume(0.05)
+            cache_sons[som].set_volume(2)
 
         except pygame.error:
             print('Erro ao tentar reproduzir: {0}.ogg'.format(som))
@@ -55,6 +61,12 @@ def carrega_imagens (imagem):
             sys.exit()
 
         return cache_imagens[imagem]
+
+
+
+
+
+
 
 #----------classe que atribui características as personagens
 class Carac:
@@ -94,7 +106,6 @@ class Button(pygame.sprite.Sprite):
         if pos[0] > self.x and pos[0] < self.x + largura_botao :
             if pos[1] > self.y and pos[1] < self.y + altura_botao:
                 return True
-            
         return False
 
 #----------classe que cria os botões das settings
@@ -127,6 +138,14 @@ class settings():
             
         return False
 
+
+
+
+
+
+
+
+
 #----------função principal:
 def main():  
     """Rotina principal do jogo Cara A Cara de pygame"""
@@ -140,7 +159,6 @@ def main():
     #----------cria título do jogo
     pygame.display.set_caption("CARA A CARA")
 
-    #----------criação dos objetos----------
     #----------criação dos objetos tipo Carac (personagens)
     Rodrigo = Carac('masculino', 'clara', 'castanho', 'fechada', 'castanhos', 'nao', 'nao', 'pontudo', 'nao')
     Karina = Carac('feminino', 'negra', 'castanho', 'aberta', 'verdes', 'nao', 'nao', 'redondo', 'brincos')
@@ -198,18 +216,23 @@ def main():
     Inicio = settings(VERDE, 850 , 300, 400, 200,'Iniciar')
     Chutar = settings(AZUL,1000,20,200,100,'Chutar')
 
-    #----------musica de fundo:
+    #----------musica de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
-    pygame.mixer.music.set_volume(1)
+    pygame.mixer.music.set_volume(0.05)
     pygame.mixer.music.play(-1)
 
+    #----------variável que armazena som quando o X é adicionado
+    arquivo_x = os.path.join('assets','sons','som_do_x.ogg')
+    som_x = carrega_sons(arquivo_x)
+
     #----------tela inicial
-    inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imgame de inicio
+    inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imageme de inicio
     inicio_load = pygame.image.load(inicio_dir).convert()
     inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
     window.blit(inicio, (0,0))
+
     #----------Cria os Bottoes de Inicio e Regras
     Regras.draw(window,PRETO)
     Inicio.draw(window,PRETO)
@@ -222,54 +245,62 @@ def main():
     input_rect = pygame.Rect(1000,140,largura_input,32)
     draw_input = False
 
-
     #----------nomes das personagens
     nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
     #----------personagens sorteados
     personagem_sorteio_i = random.randrange(0,len(nomes_personagens))
     personagem_escolhido = nomes_personagens [personagem_sorteio_i]
 
-    #----------variável que armazena som quando o X é adicionado
-
     #----------variável que define quando o jogo acaba
     game = False
-    #----------tela de regrAS
-    inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
-    inicio_load = pygame.image.load(inicio_dir).convert()
-    inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
-    #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
 
-    while True:
-        event = pygame.event.wait()
+    #----------tela de regras
+    regras_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
+    regras_load = pygame.image.load(regras_dir).convert()
+    regras = pygame.transform.scale(regras_load, (LARGURA, ALTURA))
 
-        #----------variavel da posicao do mouse
-        pos = pygame.mouse.get_pos()
-        if event.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
-            game = True
-            break
-        if Regras.isOver(pos):
-            window.blit(inicio, (0,0))
-            #----------verifica se o jogador clicou em alguma tecla para iniciar o jogo 
-            while pygame.event.wait().type != pygame.KEYDOWN:
-                game = True
-
-
-    #----------inicia contador de tentativas
-    contador = 1
-
-    #----------objeto para controle da atualização de imagens
+    #----------objeto para controle da atualização de imagens   
     FPS = 60
     clock = pygame.time.Clock()
     cor_bativa = AZUL
     cor_bpassiva = PRETO
     active = False
 
+
+    #----------começa a interção com o jogador----------
+    #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
+    while True:
+        clock.tick(FPS)
+        event = pygame.event.wait()
+        eventos = pygame.event.get()
+        #----------variavel da posicao do mouse
+        pos = pygame.mouse.get_pos()
+        for evento in eventos:
+            if evento.type == pygame.QUIT: 
+                game = False
+                pygame.quit()              
+                sys.exit() 
+        if event.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
+            game = True
+            break
+        if event.type == pygame.MOUSEBUTTONDOWN and Regras.isOver(pos):
+            window.blit(regras, (0,0))
+            #----------verifica se o jogador clicou em qualquer tecla para iniciar o jogo 
+            if event.type == pygame.KEYDOWN:
+                game = True
+                break
+
+    #----------inicia contador de tentativas
+    contador = 0
+
     # ===== Loop principal =====
     while game:
+        #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
-        #----------chamando a função que redesenha todos os botões
+        
         #----------preenche tela com cor branca
         window.fill(BRANCO)
+
         #----------Desenha os botoes 
         Aline_button.draw(window,PRETO)
         Rodrigo_button.draw(window,PRETO) 
@@ -296,8 +327,6 @@ def main():
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
         Chutar.draw(window,PRETO)
-        
-        
 
         #----------variavel da posicao do mouseSSSSS
         pos = pygame.mouse.get_pos()
@@ -315,69 +344,99 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Aline_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Rodrigo_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Karina_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Ricardo_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Bruno_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Paula_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Francisco_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Erica_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Sonia_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Felipe_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Julia_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Eduardo_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Mariana_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Pedro_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Gisele_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Juliana_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Robson_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Gabriel_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Nathalia_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Daniel_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Marcelo_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Joao_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Marta_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
                 if Renato_button.isOver(pos):
                     print('botao clicado')
+                    som_x.play()
+                #----------evento que verifica se o jogador clicou no botão chute
                 if Chutar.isOver(pos):
                     draw_input = True
+                #----------evento ?????????
                 if input_rect.collidepoint(event.pos):
                     active = True
                 else:
                     active = False
+
+            #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
-                print(event.key)
                 if active == True:
                     if event.key == pygame.K_BACKSPACE:
                         user_text = user_text[:-1]
                     else:
                         user_text += event.unicode
+
             if active:
                 input_cor = cor_bativa
+
             else:
                 input_cor = cor_bpassiva
+        #----------jogador escreve o chute
         if draw_input == True:                
             pygame.draw.rect(window,input_cor,input_rect,2)
             superfice_texto = fonte_base.render(user_text,True,input_cor)
@@ -387,7 +446,6 @@ def main():
 
         #----------função que atualiza a tela
         pygame.display.update()        
-        #----------atualiza a tela
         pygame.display.flip()
 
 #----------função main
