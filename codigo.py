@@ -220,7 +220,15 @@ def main():
     #----------Cria os Bottoes de Inicio e Regras
     Regras.draw(window,PRETO)
     Inicio.draw(window,PRETO)
-    pygame.display.update() 
+    pygame.display.update()
+
+    #----------Base Para Box Input
+    fonte_base = pygame.font.Font(None,32)
+    user_text = '' 
+    largura_input = 140
+    input_rect = pygame.Rect(1000,140,largura_input,32)
+    draw_input = False
+ 
 
     #----------nomes das personagens
     nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
