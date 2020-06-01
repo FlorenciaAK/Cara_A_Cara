@@ -216,7 +216,7 @@ def main():
     pygame.display.update()
 
     #----------Base Para Box Input
-    fonte_base = pygame.font.Font(None,64)
+    fonte_base = pygame.font.Font(None,32)
     user_text = '' 
     largura_input = 140
     input_rect = pygame.Rect(1000,140,largura_input,32)
@@ -234,18 +234,21 @@ def main():
 
     #----------variável que define quando o jogo acaba
     game = False
-
+    #----------tela de regrAS
+    inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
+    inicio_load = pygame.image.load(inicio_dir).convert()
+    inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
     #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
-    while pygame.event.wait().type != pygame.MOUSEBUTTONDOWN:
+
+    while True:
+        event = pygame.event.wait()
+
         #----------variavel da posicao do mouse
         pos = pygame.mouse.get_pos()
-        if Inicio.isOver(pos):
+        if event.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
             game = True
+            break
         if Regras.isOver(pos):
-            #----------tela de regrAS
-            inicio_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
-            inicio_load = pygame.image.load(inicio_dir).convert()
-            inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
             window.blit(inicio, (0,0))
             #----------verifica se o jogador clicou em alguma tecla para iniciar o jogo 
             while pygame.event.wait().type != pygame.KEYDOWN:
@@ -295,8 +298,7 @@ def main():
         Renato_button.draw(window,PRETO)
         Chutar.draw(window,PRETO)
         
-        #----------função que atualiza a tela
-        pygame.display.update()
+        
 
         #----------variavel da posicao do mouseSSSSS
         pos = pygame.mouse.get_pos()
@@ -362,29 +364,30 @@ def main():
                     print('botao clicado')
                 if Chutar.isOver(pos):
                     draw_input = True
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        if input_rect.collidepoint(event.pos):
-                            active = True
-                        else:
-                            active = False
-                    if event.type == pygame.KEYDOWN:
-                        if active == True:
-                            if event.key == pygame.K_BACKSPACE:
-                                user_text = user_text[:-1]
-                            else:
-                                user_text += event.unicode
-                    if active:
-                        input_cor = cor_bativa
+                if input_rect.collidepoint(event.pos):
+                    active = True
+                else:
+                    active = False
+            if event.type == pygame.KEYDOWN:
+                print(event.key)
+                if active == True:
+                    if event.key == pygame.K_BACKSPACE:
+                        user_text = user_text[:-1]
                     else:
-                        input_cor = cor_bpassiva
+                        user_text += event.unicode
+            if active:
+                input_cor = cor_bativa
+            else:
+                input_cor = cor_bpassiva
         if draw_input == True:                
             pygame.draw.rect(window,input_cor,input_rect,2)
-            superfice_texto = fonte_base.render(user_text,True,PRETO)
+            superfice_texto = fonte_base.render(user_text,True,input_cor)
             window.blit(superfice_texto,(input_rect.x + 5, input_rect.y + 5))
-            #input_rect.width = max(100,superfice_texto.get_width()+10)S
+            
                     
 
-                
+        #----------função que atualiza a tela
+        pygame.display.update()        
         #----------atualiza a tela
         pygame.display.flip()
 

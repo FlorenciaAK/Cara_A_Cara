@@ -402,6 +402,32 @@ def main():
                 if Renato_button.isOver(pos):
                     print('botao clicado')
                     barulho_x.play()
+                #----------Opcao para a pessoa chutar 
+                if Chutar.isOver(pos):
+                    draw_input = True
+                #----------O botao de input so esta ativado quando voce o seleciona
+                if input_rect.collidepoint(event.pos):
+                    active = True
+                else:
+                    active = False
+            #----------Recebe o input da pessoa e associa a uma string
+            if event.type == pygame.KEYDOWN:
+                print(event.key)
+                if active == True:
+                    if event.key == pygame.K_BACKSPACE:
+                        user_text = user_text[:-1]
+                    else:
+                        user_text += event.unicode
+            #----------As cores se alteram se o botao de input esta selecionado            
+            if active:
+                input_cor = cor_bativa
+            else:
+                input_cor = cor_bpassiva
+        #----------Cria a superfice onde sera esscrito o input
+        if draw_input == True:                
+            pygame.draw.rect(window,input_cor,input_rect,2)
+            superfice_texto = fonte_base.render(user_text,True,input_cor)
+            window.blit(superfice_texto,(input_rect.x + 5, input_rect.y + 5))
                 
         #----------atualiza a tela
         pygame.display.flip()
