@@ -220,7 +220,6 @@ def main():
     user_text = '' 
     largura_input = 140
     input_rect = pygame.Rect(1000,140,largura_input,32)
-
     draw_input = False
 
 
