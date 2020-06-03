@@ -32,7 +32,6 @@ altura_botao = 150
 
 
 
-
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -297,15 +296,19 @@ def main():
                 break
 
     #----------inicia contador de tentativas
-    contador = 0
+    contador = 5
 
     # ===== Loop principal =====
-    while game:
+    while game and contador>0:
         #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
         
         #----------preenche tela com cor branca
         window.fill(BRANCO)
+
+        #----------colocado a quant de chutes restantes na tela:
+        font = pygame.font.SysFont("TimesNewRoman", 30)
+        texto = font.render("Tentativas restantes: {0}".format(contador), True, PRETO)
 
         #----------Desenha os botoes 
         Aline_button.draw(window,PRETO)
@@ -530,6 +533,8 @@ def main():
                 if active == True:
                     if event.key == pygame.K_BACKSPACE:
                         user_text = user_text[:-1]
+                   # if event.key == pygame.K_RETURN:
+
                     else:
                         user_text += event.unicode
 
@@ -544,7 +549,8 @@ def main():
             superfice_texto = fonte_base.render(user_text,True,input_cor)
             window.blit(superfice_texto,(input_rect.x + 5, input_rect.y + 5))
             
-                    
+        #----------tentativas na tela:
+        window.blit(texto, (700,50))        
 
         #----------função que atualiza a tela
         pygame.display.update()        
