@@ -91,6 +91,7 @@ class Button(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
         #----------ponto superior esquerdo da imagem
         self.x = x
+        self.selecionada = True
         self.y = y
 
     def draw(self,win,outline=None):
@@ -99,6 +100,10 @@ class Button(pygame.sprite.Sprite):
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,largura_botao+4,altura_botao+4),0)
             
         win.blit(self.image,[self.x,self.y])
+
+        if self.selecionada:
+            pygame.draw.line(win, PRETO, (self.x-2,self.y-2), (self.x+largura_botao, self.y+altura_botao), 5)    
+
         
 
     def isOver(self, pos):
