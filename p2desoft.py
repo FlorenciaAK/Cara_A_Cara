@@ -27,11 +27,6 @@ ALTURA = 750
 largura_botao = 90
 altura_botao = 150
 
-
-
-
-
-
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -61,13 +56,7 @@ def carrega_imagens (imagem):
 
         return cache_imagens[imagem]
 
-
-
-
-
-
-
-#----------classe que atribui características as personagens
+#----------classe que atribui características às personagens
 class Carac:
     def __init__ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
         self.sexo = sexo
@@ -90,11 +79,12 @@ class Button(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
         #----------ponto superior esquerdo da imagem
         self.x = x
-        self.selecionada = False
         self.y = y
+        #----------variável que adiciona ou retira o x em cima da personagem
+        self.selecionada = False
 
+    #----------função que desenha o botao na tela 
     def draw(self,win,outline=None):
-        #funcao que desenha o botao na tela 
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,largura_botao+4,altura_botao+4),0)
             
@@ -103,9 +93,8 @@ class Button(pygame.sprite.Sprite):
         if self.selecionada:
             pygame.draw.line(win, PRETO, (self.x-2,self.y-2), (self.x+largura_botao, self.y+altura_botao), 5)   
             pygame.draw.line(win, PRETO, (self.x+largura_botao,self.y-2), (self.x-2, self.y+altura_botao), 5) 
-
-        
-
+    
+    #----------função que retorna se o mouse está em cima de certo botão
     def isOver(self, pos):
         #Rastreia a posicao do  mause para  ver se esta em cima do botao
         if pos[0] > self.x and pos[0] < self.x + largura_botao :
@@ -124,10 +113,10 @@ class settings():
         self.text = text
 
     def draw(self,win,outline=None):
-        #Call this method to draw the button on the screen
+        #----------Call this method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
-            
+    
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
         if self.text != '':
@@ -135,21 +124,14 @@ class settings():
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
+    #----------função que retorna se o mouse está em cima de certo botão
     def isOver(self, pos):
-        #Pos is the mouse position or a tuple of (x,y) coordinates
+        #----------Pos is the mouse position or a tuple of (x,y) coordinates
         if pos[0] > self.x and pos[0] < self.x + self.width:
             if pos[1] > self.y and pos[1] < self.y + self.height:
                 return True
             
         return False
-
-
-
-
-
-
-
-
 
 #----------função principal:
 def main():  
@@ -170,7 +152,7 @@ def main():
     Ricardo = Carac('masculino', 'clara', 'preto', 'aberta', 'castanhos', 'nao', 'barba', 'redondo', 'nao')
     Bruno = Carac('masculino', 'clara', 'loiro', 'fechada', 'verdes', 'sim', 'barba', 'redondo', 'nao')
     Paula = Carac('feminino', 'clara', 'loiro', 'fechada', 'castanhos ', 'nao', 'nao', 'redondo', 'batom')
-    Fransisco = Carac('masculino', 'clara', 'castanho', 'aberta', 'azuis', 'nao', 'bigode', 'pontudo', 'nao')
+    Francisco = Carac('masculino', 'clara', 'castanho', 'aberta', 'azuis', 'nao', 'bigode', 'pontudo', 'nao')
     Erica = Carac('feminino', 'clara', 'loiro', 'fecada', 'azuis', 'sim', 'nao', 'redondo', 'chapeu')
     Sonia = Carac('feminino', 'clara', 'branco', 'fechada', 'verdes', 'sim', 'nao', 'pontudo', 'brinco')
     Felipe = Carac('masculino', 'clara', 'nao', 'abeta', 'preto', 'oculos', 'bigode', 'pontudo', 'nao')
@@ -233,7 +215,7 @@ def main():
     som_x = carrega_sons(arquivo_x)
 
     #----------tela inicial
-    inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imageme de inicio
+    inicio_dir = os.path.join("assets","img",'inicio.jpeg')  #########criar imagem de inicio
     inicio_load = pygame.image.load(inicio_dir).convert()
     inicio = pygame.transform.scale(inicio_load, (LARGURA, ALTURA))
     window.blit(inicio, (0,0))
@@ -269,27 +251,44 @@ def main():
     #----------objeto para controle da atualização de imagens   
     FPS = 60
     clock = pygame.time.Clock()
+
+    #----------identificar se o botão chute foi apertado
     cor_bativa = AZUL
     cor_bpassiva = PRETO
     active = False
 
+    #----------contador de tentativas
+    contador = 5
 
     #----------começa a interção com o jogador----------
-    #----------verifica se o jogador clicou em algum botao e direciona para tela especifica
+    #----------verifica se o jogador clicou em algum botão e direciona para tela especifica
     while True:
+        #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
+
+        #----------não faz nada até certo event acontecer
         event = pygame.event.wait()
+
+        #----------devolve uma lista com os acontecimentos do teclado e mouse
         eventos = pygame.event.get()
-        #----------variavel da posicao do mouse
+
+        #----------variavel da posição do mouse
         pos = pygame.mouse.get_pos()
+
+        #----------percorre a lista de eventos
         for evento in eventos:
+            #----------verifica se o jogador clicou no x vermelho da tela
             if evento.type == pygame.QUIT: 
                 game = False
                 pygame.quit()              
                 sys.exit() 
+
+        #----------verifica se o mouse está sobre o botão iniciar e se este foi clicado
         if event.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
             game = True
             break
+        
+        #----------verifica se o mouse está sobre o botão regras e se este foi clicado
         if event.type == pygame.MOUSEBUTTONDOWN and Regras.isOver(pos):
             window.blit(regras, (0,0))
             #----------verifica se o jogador clicou em qualquer tecla para iniciar o jogo 
@@ -297,22 +296,18 @@ def main():
                 game = True
                 break
 
-    #----------inicia contador de tentativas
-    contador = 5
-
-    # ===== Loop principal =====
-    while game and contador>0:
+    while game and (contador > 0):
         #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
         
         #----------preenche tela com cor branca
         window.fill(BRANCO)
 
-        #----------colocado a quant de chutes restantes na tela:
+        #----------coloca a quantidade de chutes restantes na tela:
         font = pygame.font.SysFont("TimesNewRoman", 30)
         texto = font.render("Tentativas restantes: {0}".format(contador), True, PRETO)
 
-        #----------Desenha os botoes 
+        #----------Desenha os botões 
         Aline_button.draw(window,PRETO)
         Rodrigo_button.draw(window,PRETO) 
         Karina_button.draw(window,PRETO)
@@ -339,11 +334,13 @@ def main():
         Renato_button.draw(window,PRETO)
         Chutar.draw(window,PRETO)
 
-        #----------variavel da posicao do mouseSSSSS
+        #----------variável da posição do mouse
         pos = pygame.mouse.get_pos()
 
         #----------coleta de eventos
         eventos = pygame.event.get()
+
+        #----------percorre a lista de eventos
         for event in eventos:
             #----------evento para sair do jogo
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE): 
