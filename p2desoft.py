@@ -27,6 +27,14 @@ ALTURA = 750
 largura_botao = 90
 altura_botao = 150
 
+#----------uniformiza o tamanho do rosto neutro
+largura_pn = 400
+altura_pn = 300
+
+#----------uniformiza o tamanho dos botões das características a serem escolhidas
+largura_carac = 70
+altura_carac = 40
+
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
 def carrega_sons (som):
@@ -103,16 +111,17 @@ class Button(pygame.sprite.Sprite):
         return False
 
 #----------classe que cria os botões das settings
-class settings():
-    def __init__(self, color, x,y,width,height, text=''):
+class Settings:
+    def __init__(self, color, x, y, width, height, text='', tam_fonte):
         self.color = color
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.text = text
+        self.tamanho_da_fonte = tam_fonte
 
-    def draw(self,win,outline=None):
+    def draw(self, win, outline=None, tam_fonte):
         #----------Call this method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
@@ -120,7 +129,7 @@ class settings():
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
         
         if self.text != '':
-            font = pygame.font.SysFont('comicsans', 60)
+            font = pygame.font.SysFont("TimesNewRoman", self.tamanho_da_fonte)
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
@@ -186,7 +195,7 @@ def main():
     Julia_button = Button('Julia.jpg',210,392)
     Eduardo_button = Button('Eduardo.jpg',210,578)
     Mariana_button = Button('Mariana.jpg',310,20)
-    Pedro_button =Button('Pedro.jpg',310,206)
+    Pedro_button = Button('Pedro.jpg',310,206)
     Gisele_button = Button('Gisele.jpg',310,392)
     Juliana_button = Button('Juliana.jpg',310,578)
     Robson_button = Button('Robson.jpg',410,20)
@@ -199,11 +208,22 @@ def main():
     Renato_button = Button('Renato.jpg',510,578)
 
     #----------criação dos objetos do tipo settings
-    Regras = settings(VERMELHO, 150 , 300, 400, 200,'Regras') 
-    Inicio = settings(VERDE, 850 , 300, 400, 200,'Iniciar')
-    Chutar = settings(AZUL,1000,20,200,100,'Chutar')
+    Regras = Settings(VERMELHO, 150 , 300, 400, 200,'Regras',60) 
+    Inicio = Settings(VERDE, 850 , 300, 400, 200,'Iniciar',60)
+    Chutar = Settings(AZUL,1000,20,200,100,'Chutar', 60)
 
-    #----------musica de fundo
+    #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
+    sexo_button = Settings(VERDE, 750, 300, largura_carac, altura_carac,'Sexo', 20)
+    pele_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Cor da pele', 20)
+    cabelo_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Cor do cabelo', 20)
+    boca_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de boca', 20)
+    olho_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Cor do olho', 20)
+    oculo_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Óculos', 20)
+    barba_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Pelo facial', 20)
+    queixo_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de queixo', 20)
+    acessorios_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Acessórios', 20)
+
+    #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
@@ -244,9 +264,14 @@ def main():
     game = False
 
     #----------tela de regras
-    regras_dir = os.path.join("assets","img",'Sonia.jpg')  #########criar imgame de regras 
-    regras_load = pygame.image.load(regras_dir).convert()
+    regras_dir = os.path.join("assets","img",'regras.jpeg')  #########criar imagem de regras 
+    regras_load = carrega_imagens(regras_dir)
     regras = pygame.transform.scale(regras_load, (LARGURA, ALTURA))
+
+    #----------imagem da pessoa neutra
+    pessoa_neutra_dir = os.path.join("assets","img","rosto_neutro.jpeg")
+    pessoa_neutra_load = carrega_imagens(pessoa_neutra_dir)
+    pessoa_neutra = pygame.transform.scale(pessoa_neutra_load,(largura_pn, altura_pn))
 
     #----------objeto para controle da atualização de imagens   
     FPS = 60
@@ -274,6 +299,7 @@ def main():
 
         #----------variavel da posição do mouse
         pos = pygame.mouse.get_pos()
+        print (pos)
 
         #----------percorre a lista de eventos
         for evento in eventos:
@@ -307,7 +333,10 @@ def main():
         font = pygame.font.SysFont("TimesNewRoman", 30)
         texto = font.render("Tentativas restantes: {0}".format(contador), True, PRETO)
 
-        #----------Desenha os botões 
+        #----------Desenha os rosto neutro
+        window.blit(pessoa_neutra,(800,350))
+
+        #----------Desenha os botões das personagens
         Aline_button.draw(window,PRETO)
         Rodrigo_button.draw(window,PRETO) 
         Karina_button.draw(window,PRETO)
@@ -333,6 +362,17 @@ def main():
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
         Chutar.draw(window,PRETO)
+
+        #----------Desenha os botões das características
+        sexo_button.draw(window,PRETO)
+        pele_button.draw(window,PRETO)
+        cabelo_button.draw(window,PRETO)
+        boca_button.draw(window,PRETO)
+        olho_button.draw(window,PRETO)
+        oculos_button.draw(window,PRETO)
+        barba_button.draw(window,PRETO)
+        queixo_button.draw(window,PRETO)
+        acessorios_button.draw(window,PRETO)
 
         #----------variável da posição do mouse
         pos = pygame.mouse.get_pos()
