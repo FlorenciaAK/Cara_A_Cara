@@ -255,6 +255,8 @@ def main():
     #----------personagens sorteados
     personagem_sorteio_i = random.randrange(0,len(nomes_personagens))
     personagem_escolhido = nomes_personagens [personagem_sorteio_i]
+    personagem_escolhido_lower = personagem_escolhido.lower()
+    print(personagem_escolhido)
 
     #----------variável que define quando o jogo acaba
     game = False
@@ -533,7 +535,17 @@ def main():
                 if active == True:
                     if event.key == pygame.K_BACKSPACE:
                         user_text = user_text[:-1]
-                   # if event.key == pygame.K_RETURN:
+                    elif event.key == pygame.K_RETURN:
+                        user_text_lower = user_text.lower()
+                        if user_text_lower == personagem_escolhido_lower:
+                            #----------tela do vencedor
+                            venceu_dir = os.path.join("assets","img",'Tela_ganhadora.jpeg')  #########criar imgame de regras 
+                            venceu_load = carrega_imagens(venceu_dir)
+                            venceu = pygame.transform.scale(venceu_load, (LARGURA, ALTURA))
+                            window.blit(venceu, (0, 0))
+                        else:
+                            contador -= 1
+                            
 
                     else:
                         user_text += event.unicode
