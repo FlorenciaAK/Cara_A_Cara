@@ -91,7 +91,7 @@ class Button(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(largura_botao,altura_botao))
         #----------ponto superior esquerdo da imagem
         self.x = x
-        self.selecionada = True
+        self.selecionada = False
         self.y = y
 
     def draw(self,win,outline=None):
@@ -102,7 +102,8 @@ class Button(pygame.sprite.Sprite):
         win.blit(self.image,[self.x,self.y])
 
         if self.selecionada:
-            pygame.draw.line(win, PRETO, (self.x-2,self.y-2), (self.x+largura_botao, self.y+altura_botao), 5)    
+            pygame.draw.line(win, PRETO, (self.x-2,self.y-2), (self.x+largura_botao, self.y+altura_botao), 5)   
+            pygame.draw.line(win, PRETO, (self.x+largura_botao,self.y-2), (self.x-2, self.y+altura_botao), 5) 
 
         
 
@@ -348,75 +349,171 @@ def main():
             #----------evento que verifica se o botão do mouse foi clicado
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Aline_button.isOver(pos):
+                    if Aline_button.selecionada == False:
+                        Aline_button.selecionada = True
+                    elif Aline_button.selecionada == True:
+                        Aline_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Rodrigo_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Karina_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Ricardo_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Bruno_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Paula_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Francisco_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Erica_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Sonia_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Felipe_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Julia_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Eduardo_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Mariana_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Pedro_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Gisele_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Juliana_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Robson_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Gabriel_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Nathalia_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Daniel_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Marcelo_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Joao_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Marta_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 if Renato_button.isOver(pos):
+                    if Rodrigo_button.selecionada == False:
+                        Rodrigo_button.selecionada = True
+                    elif Rodrigo_button.selecionada == True:
+                        Rodrigo_button.selecionada = False
                     print('botao clicado')
                     som_x.play()
                 #----------evento que verifica se o jogador clicou no botão chute
