@@ -214,13 +214,13 @@ def main():
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
     sexo_button = Settings(VERDE, 950, 680, largura_carac, altura_carac,'Sexo', 20)
-    pele_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Cor da pele', 20)
+    pele_button = Settings(VERDE, 1190, 390, largura_carac, altura_carac,'Cor da pele', 20)
     cabelo_button = Settings(VERDE, 680, 390, largura_carac, altura_carac,'Cor do cabelo', 20)
-    boca_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de boca', 20)
+    boca_button = Settings(VERDE, 1190, 567, largura_carac, altura_carac,'Tipo de boca', 20)
     olho_button = Settings(VERDE, 680, 480, largura_carac, altura_carac,'Cor do olho', 20)
-    oculos_button = Settings(VERDE, 1195, 510, largura_carac, altura_carac,'Óculos', 20)
+    oculos_button = Settings(VERDE, 1190, 485, largura_carac, altura_carac,'Óculos', 20)
     barba_button = Settings(VERDE, 680, 570, largura_carac, altura_carac,'Pelo facial', 20)
-    queixo_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de queixo', 20)
+    queixo_button = Settings(VERDE, 1190, 617, largura_carac, altura_carac,'Tipo de queixo', 20)
     acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
     #----------música de fundo
@@ -228,7 +228,7 @@ def main():
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
     pygame.mixer.music.set_volume(0.05)
-    pygame.mixer.music.play(-1)
+    #pygame.mixer.music.play(-1)
 
     #----------variável que armazena som quando o X é adicionado
     arquivo_x = os.path.join('assets','sons','som_do_x.ogg')
