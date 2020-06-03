@@ -28,12 +28,12 @@ largura_botao = 90
 altura_botao = 150
 
 #----------uniformiza o tamanho do rosto neutro
-largura_pn = 600
+largura_pn = 400
 altura_pn = 300
 
 #----------uniformiza o tamanho dos botões das características a serem escolhidas
-largura_carac = 70
-altura_carac = 40
+largura_carac = 130
+altura_carac = 33
 
 #----------função que da load nos sons do jogo:
 cache_sons = {}  
@@ -213,15 +213,15 @@ def main():
     Chutar = Settings(AZUL,1000,20,200,100,'Chutar', 60)
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
-    sexo_button = Settings(VERDE, 750, 300, largura_carac, altura_carac,'Sexo', 20)
+    sexo_button = Settings(VERDE, 950, 680, largura_carac, altura_carac,'Sexo', 20)
     pele_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Cor da pele', 20)
-    cabelo_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Cor do cabelo', 20)
+    cabelo_button = Settings(VERDE, 680, 390, largura_carac, altura_carac,'Cor do cabelo', 20)
     boca_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de boca', 20)
-    olho_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Cor do olho', 20)
-    oculo_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Óculos', 20)
-    barba_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Pelo facial', 20)
+    olho_button = Settings(VERDE, 680, 480, largura_carac, altura_carac,'Cor do olho', 20)
+    oculos_button = Settings(VERDE, 1195, 510, largura_carac, altura_carac,'Óculos', 20)
+    barba_button = Settings(VERDE, 680, 570, largura_carac, altura_carac,'Pelo facial', 20)
     queixo_button = Settings(VERDE, 1000, 200, largura_carac, altura_carac,'Tipo de queixo', 20)
-    acessorios_button = Settings(VERDE, 500, 200, largura_carac, altura_carac,'Acessórios', 20)
+    acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
@@ -373,7 +373,7 @@ def main():
         cabelo_button.draw(window,PRETO)
         boca_button.draw(window,PRETO)
         olho_button.draw(window,PRETO)
-        oculo_button.draw(window,PRETO)
+        oculos_button.draw(window,PRETO)
         barba_button.draw(window,PRETO)
         queixo_button.draw(window,PRETO)
         acessorios_button.draw(window,PRETO)
