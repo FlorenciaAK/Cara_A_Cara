@@ -28,7 +28,7 @@ largura_botao = 90
 altura_botao = 150
 
 #----------uniformiza o tamanho do rosto neutro
-largura_pn = 400
+largura_pn = 600
 altura_pn = 300
 
 #----------uniformiza o tamanho dos botões das características a serem escolhidas
@@ -112,7 +112,7 @@ class Button(pygame.sprite.Sprite):
 
 #----------classe que cria os botões das settings
 class Settings:
-    def __init__(self, color, x, y, width, height, text='', tam_fonte):
+    def __init__(self, color, x, y, width, height, text, tam_fonte):
         self.color = color
         self.x = x
         self.y = y
@@ -121,7 +121,7 @@ class Settings:
         self.text = text
         self.tamanho_da_fonte = tam_fonte
 
-    def draw(self, win, outline=None, tam_fonte):
+    def draw(self, win, outline=None, tam_fonte=20):
         #----------Call this method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
@@ -285,40 +285,44 @@ def main():
     #----------contador de tentativas
     contador = 5
 
+    #----------variável que determina se as regras estão sendo mostradas
+    manual = False
+
     #----------começa a interção com o jogador----------
     #----------verifica se o jogador clicou em algum botão e direciona para tela especifica
-    while True:
+    while not game:
         #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
-
-        #----------não faz nada até certo event acontecer
-        event = pygame.event.wait()
 
         #----------devolve uma lista com os acontecimentos do teclado e mouse
         eventos = pygame.event.get()
 
         #----------variavel da posição do mouse
         pos = pygame.mouse.get_pos()
-        print (pos)
 
         #----------percorre a lista de eventos
         for evento in eventos:
             #----------verifica se o jogador clicou no x vermelho da tela
-            if evento.type == pygame.QUIT: 
+            if evento.type == pygame.QUIT or (evento.type == pygame.KEYDOWN and evento.key == pygame.K_ESCAPE): 
                 game = False
                 pygame.quit()              
                 sys.exit() 
 
-        #----------verifica se o mouse está sobre o botão iniciar e se este foi clicado
-        if event.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
-            game = True
-            break
+            #----------verifica se o mouse está sobre o botão iniciar e se este foi clicado
+            if evento.type == pygame.MOUSEBUTTONDOWN and Inicio.isOver(pos):
+                game = True
+                break
         
-        #----------verifica se o mouse está sobre o botão regras e se este foi clicado
-        if event.type == pygame.MOUSEBUTTONDOWN and Regras.isOver(pos):
-            window.blit(regras, (0,0))
-            #----------verifica se o jogador clicou em qualquer tecla para iniciar o jogo 
-            if event.type == pygame.KEYDOWN:
+            #----------verifica se o mouse está sobre o botão regras e se este foi clicado
+            if evento.type == pygame.MOUSEBUTTONDOWN and Regras.isOver(pos):
+                #----------Marca um ritmo pro computador funcionar
+                clock.tick(FPS)
+                #----------desenha as regras na tela
+                window.blit(regras, (0,0))
+                pygame.display.flip()
+                manual = True
+                #----------verifica se o jogador clicou em qualquer tecla para iniciar o jogo 
+            if manual and (evento.type == pygame.KEYDOWN):
                 game = True
                 break
 
@@ -369,7 +373,7 @@ def main():
         cabelo_button.draw(window,PRETO)
         boca_button.draw(window,PRETO)
         olho_button.draw(window,PRETO)
-        oculos_button.draw(window,PRETO)
+        oculo_button.draw(window,PRETO)
         barba_button.draw(window,PRETO)
         queixo_button.draw(window,PRETO)
         acessorios_button.draw(window,PRETO)
