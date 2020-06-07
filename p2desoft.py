@@ -239,6 +239,7 @@ def main():
     cabelo_loiro_button = Button('cabelo_loiro.jpeg', 950, 250)
     cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1150, 250)
     cabelo_castanho_button = Button('cabelo_castanho.jpeg',1350, 250)
+    careca_button = Button('careca.png',1350, 250)
 
     #----------criação dos objetos da característica boca
     boca_aberta_button = Button('boca_aberta.jpeg', 550, 250)
@@ -262,17 +263,18 @@ def main():
     queixo_pontudo_button = Button('queixo_pontudo.jpeg', 550, 250)
 
     #----------criação dos objetos da característica acessórios
-    olho_preto_button = Button('olhos_pretos.jpeg', 550, 250)
-    olho_azul_button = Button('olhos_azuis.jpeg', 950, 250)
-    olho_verde_button = Button('olhos_verdes.jpeg', 1150, 250)
-    olho_castanho_button = Button('olhos_castanhos.jpeg',1350, 250)
+    batom_button = Button('batom.jpeg', 550, 250)
+    faixa_button = Button('faixa.jpeg', 950, 250)
+    chapeu_button = Button('chapeu.jpeg', 1150, 250)
+    brinco_button = Button('brinco.jpeg',1350, 250)
+    sem_acessórios_button = Button('sem_acessorios.jpeg',1000,400)
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
     pygame.mixer.music.set_volume(0.05)
-   #ygame.mixer.music.play(-1)
+   #pygame.mixer.music.play(-1)
 
     #----------variável que armazena som quando o X é adicionado
     arquivo_x = os.path.join('assets','sons','som_do_x.ogg')
