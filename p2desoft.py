@@ -227,7 +227,7 @@ def main():
 
     #----------criação dos objetos da característica sexo
     masculino_button = Button('sexo_masculino.jpeg', 850, 250)
-    femenino_button = Button('sexo_femenino.jpeg', 1050, 250)
+    feminino_button = Button('sexo_feminino.jpeg', 1050, 250)
 
     #----------criação dos objetos da característica pele
     clara_button = Button('pele_clara.jpeg', 850, 250)
@@ -386,7 +386,7 @@ def main():
         #----------Desenha os rosto neutro
         window.blit(pessoa_neutra,(800,350))
 
-        #----------Desenha os botões das personagens
+        #----------Desenha os botões das personagens 
         Aline_button.draw(window,PRETO)
         Rodrigo_button.draw(window,PRETO) 
         Karina_button.draw(window,PRETO)
@@ -411,6 +411,8 @@ def main():
         Joao_button.draw(window,PRETO)
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
+
+        #----------Desenha os botão chutar
         Chutar.draw(window,PRETO)
 
         #----------Desenha os botões das características
@@ -618,15 +620,41 @@ def main():
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
                 if sexo_button.isOver(pos):
-
+                    masculino_button.draw(window,PRETO)
+                    feminino_button.draw(window,PRETO)
                 if pele_button.isOver(pos):
+                    clara_button.draw(window,PRETO)
+                    escura_button.draw(window,PRETO)
                 if cabelo_button.isOver(pos):
+                    cabelo_branco_button.draw(window,PRETO)
+                    cabelo_castanho_button.draw(window,PRETO)
+                    cabelo_loiro_button.draw(window,PRETO)
+                    cabelo_preto_button.draw(window,PRETO)
+                    cabelo_ruivo_button.draw(window,PRETO)
+                    careca_button.draw(window,PRETO)
                 if boca_button.isOver(pos):
+                    boca_aberta_button.draw(window,PRETO)
+                    boca_fechada_button.draw(window,PRETO)
                 if olho_button.isOver(pos):
+                    olho_castanho_button.draw(window,PRETO)
+                    olho_azul_button.draw(window,PRETO)
+                    olho_preto_button.draw(window,PRETO)
+                    olho_verde_button.draw(window,PRETO)
                 if oculos_button.isOver(pos):
+                    Sim.draw(window,PRETO)
+                    Nao.draw(window,PRETO)
                 if barba_button.isOver(pos):
+                    bigode_button.draw(window,PRETO)
+                    barba_button.draw(window,PRETO)
                 if queixo_button.isOver(pos):
+                    queixo_pontudo_button.draw(window,PRETO)
+                    queixo_redondo_button.draw(window,PRETO)
                 if acessorios_button.isOver(pos):
+                    batom_button.draw(window,PRETO)
+                    brinco_button.draw(window,PRETO)
+                    faixa_button.draw(window,PRETO)
+                    chapeu_button.draw(window,PRETO)
+                    sem_acessórios_button.draw(window,PRETO)
 
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
