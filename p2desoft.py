@@ -225,6 +225,48 @@ def main():
     queixo_button = Settings(VERDE, 1190, 617, largura_carac, altura_carac,'Tipo de queixo', 20)
     acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
+    #----------criação dos objetos da característica sexo
+    masculino_button = Button('sexo_masculino.jpeg', 850, 250)
+    femenino_button = Button('sexo_femenino.jpeg', 1050, 250)
+
+    #----------criação dos objetos da característica pele
+    clara_button = Button('pele_clara.jpeg', 850, 250)
+    escura_button = Button('pele_escura.jpeg', 1050, 250)
+
+    #----------criação dos objetos da característica cabelo
+    cabelo_preto_button = Button('cabelo_preto.jpeg', 550, 250)
+    cabelo_branco_button = Button('cabelo_branco.jpeg', 750, 250)
+    cabelo_loiro_button = Button('cabelo_loiro.jpeg', 950, 250)
+    cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1150, 250)
+    cabelo_castanho_button = Button('cabelo_castanho.jpeg',1350, 250)
+
+    #----------criação dos objetos da característica boca
+    boca_aberta_button = Button('boca_aberta.jpeg', 550, 250)
+    boca_fechada_button = Button('boca_fechada.jpeg', 550, 250)
+
+    #----------criação dos objetos da característica olhos
+    olho_preto_button = Button('olhos_pretos.jpeg', 550, 250)
+    olho_azul_button = Button('olhos_azuis.jpeg', 950, 250)
+    olho_verde_button = Button('olhos_verdes.jpeg', 1150, 250)
+    olho_castanho_button = Button('olhos_castanhos.jpeg',1350, 250)
+
+    #----------criação dos objetos da característica óculos
+    #chamar o draw.Sim e o draw.Nao
+
+    #----------criação dos objetos da característica pelo facial
+    barba_button = Button('barba.jpeg', 550, 250)
+    bigode_button = Button('bigode.jpeg', 550, 250)
+
+    #----------criação dos objetos da característica queixo
+    queixo_redondo_button = Button('queixo_redondo.jpeg', 550, 250)
+    queixo_pontudo_button = Button('queixo_pontudo.jpeg', 550, 250)
+
+    #----------criação dos objetos da característica acessórios
+    olho_preto_button = Button('olhos_pretos.jpeg', 550, 250)
+    olho_azul_button = Button('olhos_azuis.jpeg', 950, 250)
+    olho_verde_button = Button('olhos_verdes.jpeg', 1150, 250)
+    olho_castanho_button = Button('olhos_castanhos.jpeg',1350, 250)
+
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
@@ -574,6 +616,7 @@ def main():
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
                 if sexo_button.isOver(pos):
+
                 if pele_button.isOver(pos):
                 if cabelo_button.isOver(pos):
                 if boca_button.isOver(pos):
@@ -582,7 +625,7 @@ def main():
                 if barba_button.isOver(pos):
                 if queixo_button.isOver(pos):
                 if acessorios_button.isOver(pos):
-                    
+
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
                 if active == True:
