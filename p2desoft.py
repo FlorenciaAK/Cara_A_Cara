@@ -163,12 +163,12 @@ def main():
     Paula = Carac('feminino',      'clara',  'loiro',    'fechada', 'castanhos ','nao',   'nao',    'redondo',  'batom')
     Francisco = Carac('masculino', 'clara',  'castanho', 'aberta',  'azuis',     'nao',   'bigode', 'pontudo',  'nao')
     Erica = Carac('feminino',      'clara',  'loiro',    'fecada',  'azuis',     'sim',   'nao',    'redondo',  'chapeu')
-    Sonia = Carac('feminino',      'clara',  'branco',   'fechada', 'verdes',    'sim',   'nao',    'pontudo',  'brinco')
-    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',   'preto',     'sim',   'bigode', 'pontudo', 'nao')
+    Sonia = Carac('feminino',      'clara',  'branco',   'fechada', 'verdes',    'sim',   'nao',    'pontudo',  'brincos')
+    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',   'preto',     'sim',   'bigode','pontudo',  'nao')
     Julia = Carac('feminino',      'clara',  'castanho', 'fechada', 'pretos',    'nao',   'nao',    'redondo',  'nao')
     Eduardo = Carac('masculino' ,  'clara',  'loiro',    'aberta',  'azuis',     'nao',   'nao',    'pontudo',  'chapeu')
-    Mariana = Carac('feminino',    'clara',  'branco',   'fechada', 'castanhos', 'nao',   'nao',    'redondo',  'brinco')
-    Pedro = Carac('masculino',    'clara',   'preto',    'fechada', 'verdes',    'nao',   'nao',    'redondo',  'bone')
+    Mariana = Carac('feminino',    'clara',  'branco',   'fechada', 'castanhos', 'nao',   'nao',    'redondo',  'brincos')
+    Pedro = Carac('masculino',    'clara',   'preto',    'fechada', 'verdes',    'nao',   'nao',    'redondo',  'chapeu')
     Gisele = Carac('feminino',    'escura',  'preto',    'fechada', 'castanhos', 'nao',   'nao',    'redondo',  'brincos')
     Juliana = Carac('feminino',   'clara',   'preto',    'aberta',  'pretos',    'nao',   'nao',    'redondo',  'brincos')
     Robson = Carac('masculino',   'escura',  'preto',    'fechada', 'castanho',  'sim',   'nao',    'redondo',  'nao')
@@ -178,7 +178,7 @@ def main():
     Daniel = Carac('masculino',   'clara',   'ruivo',    'aberta',  'castanhos', 'nao',   'barba',  'redondo',  'nao')
     Marcelo = Carac('masculino',  'clara',   'nao',      'aberta',  'pretos',    'nao',   'barba',  'redondo',  'nao')
     Joao = Carac('masculino',     'clara',   'branco',   'fechada', 'pretos',    'nao',    'nao',   'pontudo',  'chapeu')
-    Marta = Carac('feminino',     'clara',   'preto',    'aberta',  'azuis',     'nao',    'nao',   'redondo',  'brinco')
+    Marta = Carac('feminino',     'clara',   'preto',    'aberta',  'azuis',     'nao',    'nao',   'redondo',  'brincos')
     Renato = Carac('masculino',   'clara',   'preto',    'fechada', 'pretos',    'nao',    'nao',   'redondo',  'nao')
 
     #----------criação dos objetos do tipo button, que define um botao para cada uma das personagens
@@ -368,8 +368,6 @@ def main():
         Marta_button.draw(window,PRETO)
         Renato_button.draw(window,PRETO)
         Chutar.draw(window,PRETO)
-        Sim.draw(window,PRETO)
-        Nao.draw(window,PRETO)
 
         #----------Desenha os botões das características
         sexo_button.draw(window,PRETO)
@@ -574,7 +572,17 @@ def main():
                     active = True
                 else:
                     active = False
-
+                #----------evento que verifica se o jogador clicou em alguma das características
+                if sexo_button.isOver(pos):
+                if pele_button.isOver(pos):
+                if cabelo_button.isOver(pos):
+                if boca_button.isOver(pos):
+                if olho_button.isOver(pos):
+                if oculos_button.isOver(pos):
+                if barba_button.isOver(pos):
+                if queixo_button.isOver(pos):
+                if acessorios_button.isOver(pos):
+                    
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
                 if active == True:
