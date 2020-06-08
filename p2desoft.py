@@ -262,19 +262,19 @@ def main():
     #chamar o draw.Sim e o draw.Nao
 
     #----------criação dos objetos da característica pelo facial
-    pelo_facial_barba_button = Button('barba.jpeg', 550, 250,largura_op,altura_op)
-    pelo_facial_bigode_button = Button('bigode.jpeg', 550, 250,largura_op,altura_op)
+    pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op)
+    pelo_facial_bigode_button = Button('bigode.jpeg', 1050, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica queixo
-    queixo_redondo_button = Button('queixo_redondo.jpeg', 550, 250,largura_op,altura_op)
-    queixo_pontudo_button = Button('queixo_pontudo.jpeg', 550, 250,largura_op,altura_op)
+    queixo_redondo_button = Button('queixo_redondo.jpeg', 850, 200,largura_op,altura_op)
+    queixo_pontudo_button = Button('queixo_pontudo.jpeg', 1050, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica acessórios
-    batom_button = Button('batom.jpeg', 550, 250,largura_op,altura_op)
-    faixa_button = Button('faixa.jpeg', 950, 250,largura_op,altura_op)
-    chapeu_button = Button('chapeu.jpeg', 1150, 250,largura_op,altura_op)
-    brinco_button = Button('brinco.jpeg',1350, 250,largura_op,altura_op)
-    sem_acessórios_button = Button('sem_acessorios.jpeg',1000,400,largura_op,altura_op)
+    batom_button = Button('batom.jpeg', 750, 200,largura_op,altura_op)
+    faixa_button = Button('faixa.jpeg', 850, 200,largura_op,altura_op)
+    chapeu_button = Button('chapeu.jpeg', 950, 200,largura_op,altura_op)
+    brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op)
+    sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op)
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
