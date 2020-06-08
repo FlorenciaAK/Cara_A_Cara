@@ -91,13 +91,16 @@ class Button(pygame.sprite.Sprite):
         #----------ponto superior esquerdo da imagem
         self.x = x
         self.y = y
+        #----------define altura e largura dos botoes para a funcao draw
+        self.largura = largura
+        self.altura = altura
         #----------variável que adiciona ou retira o x em cima da personagem
         self.selecionada = False
 
     #----------função que desenha o botao na tela 
     def draw(self,win,outline=None):
         if outline:
-            pygame.draw.rect(win, outline, (self.x-2,self.y-2,largura_botao+4,altura_botao+4),0)
+            pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.largura+4,self.altura+4),0)
             
         win.blit(self.image,[self.x,self.y])
 
@@ -238,12 +241,12 @@ def main():
     escura_button = Button('pele_escura.jpeg', 1050, 250,largura_op,altura_op)
 
     #----------criação dos objetos da característica cabelo
-    cabelo_preto_button = Button('cabelo_preto.jpeg', 550, 250,largura_op,altura_op)
-    cabelo_branco_button = Button('cabelo_branco.jpeg', 750, 250,largura_op,altura_op)
-    cabelo_loiro_button = Button('cabelo_loiro.jpeg', 950, 250,largura_op,altura_op)
-    cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1150, 250,largura_op,altura_op)
-    cabelo_castanho_button = Button('cabelo_castanho.jpeg',1350, 250,largura_op,altura_op)
-    careca_button = Button('careca.png',1350, 250,largura_op,altura_op)
+    cabelo_preto_button = Button('cabelo_preto.jpeg', 700, 200,largura_op,altura_op)
+    cabelo_branco_button = Button('cabelo_branco.jpeg', 800, 200,largura_op,altura_op)
+    cabelo_loiro_button = Button('cabelo_loiro.jpeg', 900, 200,largura_op,altura_op)
+    cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1000, 200,largura_op,altura_op)
+    cabelo_castanho_button = Button('cabelo_castanho.jpeg',1100, 200,largura_op,altura_op)
+    careca_button = Button('careca.png',1200, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica boca
     boca_aberta_button = Button('boca_aberta.jpeg', 550, 250,largura_op,altura_op)
