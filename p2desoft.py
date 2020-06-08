@@ -316,6 +316,17 @@ def main():
     #----------variável que define quando o jogo acaba
     game = False
 
+    #----------variável que dos botoes draw
+    v_sexo = False
+    v_pele = False
+    v_cabelo = False
+    v_boca = False
+    v_olho = False
+    v_oculos = False
+    v_barba = False
+    v_queixo = False
+    v_acessorios = False
+
     #----------tela de regras
     regras_dir = os.path.join("assets","img",'regras.jpeg')  #########criar imagem de regras 
     regras_load = carrega_imagens(regras_dir)
@@ -627,12 +638,7 @@ def main():
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
                 if sexo_button.isOver(pos):
-                    sexo = True
-                    if sexo:
-                        masculino_button.draw(window,PRETO)
-                        feminino_button.draw(window,PRETO)
-                    elif sexo==False:
-                        masculino_button.kill()
+                    v_sexo = True
                 if pele_button.isOver(pos):
                     clara_button.draw(window,PRETO)
                     escura_button.draw(window,PRETO)
@@ -697,6 +703,10 @@ def main():
             pygame.draw.rect(window,input_cor,input_rect,2)
             superfice_texto = fonte_base.render(user_text,True,input_cor)
             window.blit(superfice_texto,(input_rect.x + 5, input_rect.y + 5))
+        if v_sexo == True:
+            masculino_button.draw(window,PRETO)
+            feminino_button.draw(window,PRETO)
+
             
         #----------tentativas na tela:
         window.blit(texto, (700,50))        
