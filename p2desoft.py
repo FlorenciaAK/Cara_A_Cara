@@ -638,40 +638,51 @@ def main():
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
                 if sexo_button.isOver(pos):
-                    v_sexo = True
+                    if v_sexo == False:
+                        v_sexo = True
+                    else:
+                        v_sexo = False
                 if pele_button.isOver(pos):
-                    clara_button.draw(window,PRETO)
-                    escura_button.draw(window,PRETO)
+                    if v_pele == False:
+                        v_pele = True
+                    else:
+                        v_pele = False
                 if cabelo_button.isOver(pos):
-                    cabelo_branco_button.draw(window,PRETO)
-                    cabelo_castanho_button.draw(window,PRETO)
-                    cabelo_loiro_button.draw(window,PRETO)
-                    cabelo_preto_button.draw(window,PRETO)
-                    cabelo_ruivo_button.draw(window,PRETO)
-                    careca_button.draw(window,PRETO)
+                    if v_cabelo == False:
+                        v_cabelo = True
+                    else:
+                        v_cabelo = False 
                 if boca_button.isOver(pos):
-                    boca_aberta_button.draw(window,PRETO)
-                    boca_fechada_button.draw(window,PRETO)
+                    if v_boca == False:
+                        v_boca = True
+                    else:
+                        v_boca = False 
                 if olho_button.isOver(pos):
-                    olho_castanho_button.draw(window,PRETO)
-                    olho_azul_button.draw(window,PRETO)
-                    olho_preto_button.draw(window,PRETO)
-                    olho_verde_button.draw(window,PRETO)
+                    if v_olho == False:
+                        v_olho = True
+                    else:
+                        v_olho = False   
                 if oculos_button.isOver(pos):
-                    Sim.draw(window,PRETO)
-                    Nao.draw(window,PRETO)
+                    if v_oculos == False:
+                        v_oculos = True
+                    else:
+                        v_oculos = False 
                 if barba_button.isOver(pos):
-                    pelo_facial_bigode_button.draw(window,PRETO)
-                    pelo_facial_barba_button.draw(window,PRETO)
+                    if v_barba == False:
+                        v_barba = True
+                    else:
+                        v_barba = False
                 if queixo_button.isOver(pos):
-                    queixo_pontudo_button.draw(window,PRETO)
-                    queixo_redondo_button.draw(window,PRETO)
+                    if v_queixo == False:
+                        v_queixo = True
+                    else:
+                        v_queixo = False
                 if acessorios_button.isOver(pos):
-                    batom_button.draw(window,PRETO)
-                    brinco_button.draw(window,PRETO)
-                    faixa_button.draw(window,PRETO)
-                    chapeu_button.draw(window,PRETO)
-                    sem_acessórios_button.draw(window,PRETO)
+                    if v_acessorio == False:
+                        v_acessorio = True
+                    else:
+                        v_acessorio = False
+                    
 
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
@@ -706,6 +717,39 @@ def main():
         if v_sexo == True:
             masculino_button.draw(window,PRETO)
             feminino_button.draw(window,PRETO)
+        if v_pele == True:
+            clara_button.draw(window,PRETO)
+            escura_button.draw(window,PRETO)
+        if v_cabelo == True:
+            cabelo_branco_button.draw(window,PRETO)
+            cabelo_castanho_button.draw(window,PRETO)
+            cabelo_loiro_button.draw(window,PRETO)
+            cabelo_preto_button.draw(window,PRETO)
+            cabelo_ruivo_button.draw(window,PRETO)
+            careca_button.draw(window,PRETO)
+        if v_boca == True:
+            boca_aberta_button.draw(window,PRETO)
+            boca_fechada_button.draw(window,PRETO)
+        if v_olho == True:
+            olho_castanho_button.draw(window,PRETO)
+            olho_azul_button.draw(window,PRETO)
+            olho_preto_button.draw(window,PRETO)
+            olho_verde_button.draw(window,PRETO)
+        if v_oculo == True:
+            Sim.draw(window,PRETO)
+            Nao.draw(window,PRETO)
+        if v_barba == True:
+            pelo_facial_bigode_button.draw(window,PRETO)
+            pelo_facial_barba_button.draw(window,PRETO)
+        if v_queixo == True:
+            queixo_pontudo_button.draw(window,PRETO)
+            queixo_redondo_button.draw(window,PRETO)
+        if v_acessorios == True:
+            batom_button.draw(window,PRETO)
+            brinco_button.draw(window,PRETO)
+            faixa_button.draw(window,PRETO)
+            chapeu_button.draw(window,PRETO)
+            sem_acessórios_button.draw(window,PRETO)
 
             
         #----------tentativas na tela:
