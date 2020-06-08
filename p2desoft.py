@@ -342,6 +342,10 @@ def main():
     personagem_sorteio_i = random.randrange(0,len(nomes_personagens))
     personagem_escolhido = nomes_personagens [personagem_sorteio_i]
     personagem_escolhido_lower = personagem_escolhido.lower()
+
+    for k in personagens_dic:
+        if personagem_escolhido == personagens_dic[k]:
+            num = k
     print(personagem_escolhido)
 
     #----------variável que define quando o jogo acaba
@@ -715,6 +719,7 @@ def main():
                         v_acessorio = False
                 for b in lista_Botoes:
                     if b.isOver(pos):
+                        
                    
                     
 
