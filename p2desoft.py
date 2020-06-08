@@ -232,13 +232,13 @@ def main():
     acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
     #----------criação dos objetos da característica sexo
-    masculino_button = Button('sexo_masculino.jpeg', 850, 250,largura_op,altura_op)
-    feminino_button = Button('sexo_feminino.jpeg', 1050, 250,largura_op,altura_op)
+    masculino_button = Button('sexo_masculino.jpeg', 850, 200,largura_op,altura_op)
+    feminino_button = Button('sexo_feminino.jpeg', 1050, 200,largura_op,altura_op)
     sexo = False
 
     #----------criação dos objetos da característica pele
-    clara_button = Button('pele_clara.jpeg', 850, 250,largura_op,altura_op)
-    escura_button = Button('pele_escura.jpeg', 1050, 250,largura_op,altura_op)
+    clara_button = Button('pele_clara.jpeg', 850, 200,largura_op,altura_op)
+    escura_button = Button('pele_escura.jpeg', 1050, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica cabelo
     cabelo_preto_button = Button('cabelo_preto.jpeg', 700, 200,largura_op,altura_op)
@@ -249,8 +249,8 @@ def main():
     careca_button = Button('careca.png',1200, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica boca
-    boca_aberta_button = Button('boca_aberta.jpeg', 550, 250,largura_op,altura_op)
-    boca_fechada_button = Button('boca_fechada.jpeg', 550, 250,largura_op,altura_op)
+    boca_aberta_button = Button('boca_aberta.jpeg', 850, 200,largura_op,altura_op)
+    boca_fechada_button = Button('boca_fechada.jpeg', 1050, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica olhos
     olho_preto_button = Button('olhos_pretos.jpeg', 550, 250,largura_op,altura_op)
