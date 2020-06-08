@@ -81,13 +81,14 @@ class Carac:
         self.queixo = queixo
         self.acessorios = acessorios
 
+
 #----------classe que cria os botões das personagens
 class Button(pygame.sprite.Sprite):
     def __init__(self,nome_da_imagem, x,y,largura,altura):
         #----------Define o botão importando as sprites das personagens
         arquivo = os.path.join("assets","img",nome_da_imagem)
         self.image = carrega_imagens(arquivo)
-        self.image = pygame.transform.scale(self.image,(largura,altura))
+        self.image = pygame.transform.scale(self.image,(largura,altura)) 
         #----------ponto superior esquerdo da imagem
         self.x = x
         self.y = y
@@ -161,6 +162,9 @@ def main():
     #----------cria título do jogo
     pygame.display.set_caption("CARA A CARA")
 
+    #----------criação dicionario
+    personagens_dic = {}
+
     #----------criação dos objetos tipo Carac (personagens)
     Rodrigo = Carac('masculino',   'clara',  'castanho', 'fechada', 'castanhos', 'nao',   'nao',    'pontudo',  'nao')
     Karina = Carac('feminino',     'escura', 'castanho', 'aberta',  'verdes',    'nao',   'nao',    'redondo',  'brincos')
@@ -212,6 +216,31 @@ def main():
     Joao_button = Button('Joao.jpg',510,206,largura_botao,altura_botao)
     Marta_button = Button('Marta.jpg',510,392,largura_botao,altura_botao)
     Renato_button = Button('Renato.jpg',510,578,largura_botao,altura_botao)
+
+    personagens_dic["Rodrigo"]={"Button":Rodrigo_button,"Caracteristicas":Rodrigo}
+    personagens_dic["Karina"]={"Button":Karina_button,"Caracteristicas":Karina}
+    personagens_dic["Ricardo"]={"Button":Ricardo_button,"Caracteristicas":Ricardo}
+    personagens_dic["Bruno"]={"Button":Bruno_button,"Caracteristicas":Bruno}
+    personagens_dic["Paula"]={"Button":Paula_button,"Caracteristicas":Paula}
+    personagens_dic["Francisco"]={"Button":Francisco_button,"Caracteristicas":Francisco}
+    personagens_dic["Erica"]={"Button":Erica_button,"Caracteristicas":Erica}
+    personagens_dic["Sonia"]={"Button":Sonia_button,"Caracteristicas":Sonia}
+    personagens_dic["Felipe"]={"Button":Felipe_button,"Caracteristicas":Felipe}
+    personagens_dic["Julia"]={"Button":Julia_button,"Caracteristicas":Julia}
+    personagens_dic["Eduardo"]={"Button":Eduardo_button,"Caracteristicas":Eduardo}
+    personagens_dic["Mariana"]={"Button":Mariana_button,"Caracteristicas":Mariana}
+    personagens_dic["Pedro"]={"Button":Pedro_button,"Caracteristicas":Pedro}
+    personagens_dic["Gisele"]={"Button":Gisele_button,"Caracteristicas":Gisele}
+    personagens_dic["Juliana"]={"Button":Juliana_button,"Caracteristicas":Juliana}
+    personagens_dic["Robson"]={"Button":Robson_button,"Caracteristicas":Robson}
+    personagens_dic["Aline"]={"Button":Aline_button,"Caracteristicas":Aline}
+    personagens_dic["Gabriel"]={"Button":Gabriel_button,"Caracteristicas":Gabriel}
+    personagens_dic["Nathalia"]={"Button":Nathalia_button,"Caracteristicas":Nathalia}
+    personagens_dic["Daniel"]={"Button":Daniel_button,"Caracteristicas":Daniel}
+    personagens_dic["Marcelo"]={"Button":Marcelo_button,"Caracteristicas":Marcelo}
+    personagens_dic["Joao"]={"Button":Joao_button,"Caracteristicas":Joao}
+    personagens_dic["Marta"]={"Button":Marta_button,"Caracteristicas":Marta}
+    personagens_dic["Renato"]={"Button":Renato_button,"Caracteristicas":Renato}
 
     #----------criação dos objetos do tipo settings
     Regras = Settings(VERMELHO, 150 , 300, 400, 200,'Regras',60) 
@@ -276,6 +305,8 @@ def main():
     brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op)
     sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op)
 
+    lista_Botoes = [masculino_button,feminino_button]
+
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
@@ -325,7 +356,7 @@ def main():
     v_oculos = False
     v_barba = False
     v_queixo = False
-    v_acessorios = False
+    v_acessorio = False
 
     #----------tela de regras
     regras_dir = os.path.join("assets","img",'regras.jpeg')  #########criar imagem de regras 
@@ -682,6 +713,9 @@ def main():
                         v_acessorio = True
                     else:
                         v_acessorio = False
+                for b in lista_Botoes:
+                    if b.isOver(pos):
+                   
                     
 
             #----------evento que permite realizar o chute
@@ -735,7 +769,7 @@ def main():
             olho_azul_button.draw(window,PRETO)
             olho_preto_button.draw(window,PRETO)
             olho_verde_button.draw(window,PRETO)
-        if v_oculo == True:
+        if v_oculos == True:
             Sim.draw(window,PRETO)
             Nao.draw(window,PRETO)
         if v_barba == True:
@@ -744,7 +778,7 @@ def main():
         if v_queixo == True:
             queixo_pontudo_button.draw(window,PRETO)
             queixo_redondo_button.draw(window,PRETO)
-        if v_acessorios == True:
+        if v_acessorio == True:
             batom_button.draw(window,PRETO)
             brinco_button.draw(window,PRETO)
             faixa_button.draw(window,PRETO)
