@@ -253,10 +253,10 @@ def main():
     boca_fechada_button = Button('boca_fechada.jpeg', 1050, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica olhos
-    olho_preto_button = Button('olhos_pretos.jpeg', 550, 250,largura_op,altura_op)
-    olho_azul_button = Button('olhos_azuis.jpeg', 950, 250,largura_op,altura_op)
-    olho_verde_button = Button('olhos_verdes.jpeg', 1150, 250,largura_op,altura_op)
-    olho_castanho_button = Button('olhos_castanhos.jpeg',1350, 250,largura_op,altura_op)
+    olho_preto_button = Button('olhos_pretos.jpeg', 800, 200,largura_op,altura_op)
+    olho_azul_button = Button('olhos_azuis.jpeg', 900, 200,largura_op,altura_op)
+    olho_verde_button = Button('olhos_verdes.jpeg', 1000, 200,largura_op,altura_op)
+    olho_castanho_button = Button('olhos_castanhos.jpeg',1100, 200,largura_op,altura_op)
 
     #----------criação dos objetos da característica óculos
     #chamar o draw.Sim e o draw.Nao
