@@ -18,6 +18,7 @@ VERMELHO = (255,0,0)
 PRETO = (0,0,0)
 VERDE = (0,255,0)
 AZUL =(0,0,255)
+CINZA = (127,127,127)
 
 #----------dimensões da tela
 LARGURA = 1400
@@ -252,17 +253,19 @@ def main():
     Sim = Settings(VERDE,850,250,100,50,'Sim',35, 'sim')
     Nao = Settings(VERMELHO,1050,250,100,50,'Não',35, 'nao')
     Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
+    Tem_sim =  Settings(VERDE,950,250,100,50,'Tem',35, 'sim')
+    Tem_nao = Settings(VERMELHO,950,250,100,50,'Não Tem',35, 'nao') 
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
-    sexo_button = Settings(VERDE, 950, 680, largura_carac, altura_carac,'Sexo', 20)
-    pele_button = Settings(VERDE, 1190, 390, largura_carac, altura_carac,'Cor da pele', 20)
-    cabelo_button = Settings(VERDE, 680, 390, largura_carac, altura_carac,'Cor do cabelo', 20)
-    boca_button = Settings(VERDE, 1190, 567, largura_carac, altura_carac,'Tipo de boca', 20)
-    olho_button = Settings(VERDE, 680, 480, largura_carac, altura_carac,'Cor do olho', 20)
-    oculos_button = Settings(VERDE, 1190, 485, largura_carac, altura_carac,'Óculos', 20)
-    barba_button = Settings(VERDE, 680, 570, largura_carac, altura_carac,'Pelo facial', 20)
-    queixo_button = Settings(VERDE, 1190, 617, largura_carac, altura_carac,'Tipo de queixo', 20)
-    acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
+    sexo_button = Settings(CINZA, 950, 680, largura_carac, altura_carac,'Sexo', 20)
+    pele_button = Settings(CINZA, 1190, 390, largura_carac, altura_carac,'Cor da pele', 20)
+    cabelo_button = Settings(CINZA, 680, 390, largura_carac, altura_carac,'Cor do cabelo', 20)
+    boca_button = Settings(CINZA, 1190, 567, largura_carac, altura_carac,'Tipo de boca', 20)
+    olho_button = Settings(CINZA, 680, 480, largura_carac, altura_carac,'Cor do olho', 20)
+    oculos_button = Settings(CINZA, 1190, 485, largura_carac, altura_carac,'Óculos', 20)
+    barba_button = Settings(CINZA, 680, 570, largura_carac, altura_carac,'Pelo facial', 20)
+    queixo_button = Settings(CINZA, 1190, 617, largura_carac, altura_carac,'Tipo de queixo', 20)
+    acessorios_button = Settings(CINZA, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
     #----------criação dos objetos da característica sexo
     masculino_button = Button('sexo_masculino.jpeg', 850, 200,largura_op,altura_op, 'masculino')
@@ -340,7 +343,7 @@ def main():
     draw_input = False
 
     #----------nomes das personagens
-    nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "João", "Marta", "Renato"] 
+    nomes_personagens = ["Rodrigo", "Karina", "Ricardo", "Bruno", "Paula", "Francisco", "Erica", "Sonia", "Felipe", "Julia", "Eduardo", "Mariana", "Pedro", "Gisele", "Juliana", "Robson","Aline", "Gabriel", "Nathalia", "Daniel", "Marcelo", "Joao", "Marta", "Renato"] 
     #----------personagens sorteados
     personagem_sorteio_i = random.randrange(0,len(nomes_personagens))
     personagem_escolhido = nomes_personagens [personagem_sorteio_i]
@@ -488,29 +491,32 @@ def main():
                 else:
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
-                if sexo_button.isOver(pos):
-                    if v_sexo == False:
-                        v_sexo = True
-                    else:
-                        v_sexo = False
-                if masculino_button.isOver(pos) and v_sexo == True:
-                    print('botao')
-                    if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == masculino_button.valor:
-                        v_sexo = False
-                        pygame.time.delay(2000)
-                        Sim.draw(window, PRETO)
-                        pygame.time.delay(2000)
-                    else:
-                        Nao.draw(window, PRETO)
-                        pygame.time.delay(2000)
-                if feminino_button.isOver(pos):
-                    print('mdo')
-                    if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == feminino_button.valor:
-                        Sim.draw(window, PRETO)
-                        pygame.time.delay(2000)
-                    else:
-                        Nao.draw(window, PRETO)
-                        pygame.time.delay(2000)
+                for a in lista_Botoes:
+                    if a.isOver(pos):
+                        if v_sexo == False:
+                            v_sexo = True
+                        else:
+                            v_sexo = False
+                    if a.isOver(pos) and v_sexo == True:
+                        print('botao')
+                        if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == a.valor:
+                            v_sexo = False
+                            Tem_sim.draw(window, PRETO)
+                            #pygame.time.delay(5000)
+                        else:
+                            v_sexo = False
+                            Tem_nao.draw(window, PRETO)
+                            #pygame.time.delay(5000)
+                    if feminino_button.isOver(pos):
+                        print('mdo')
+                        if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == a.valor:
+                            v_sexo = False
+                            Tem_sim.draw(window, PRETO)
+                            #pygame.time.delay(5000)
+                        else:
+                            v_sexo = False
+                            Tem_nao.draw(window, PRETO)
+                            #pygame.time.delay(5000)
             
                 if pele_button.isOver(pos):
                     if v_pele == False:
@@ -552,10 +558,6 @@ def main():
                         v_acessorio = True
                     else:
                         v_acessorio = False
-               
-                   
-                    
-
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
                 if active == True:
@@ -586,9 +588,6 @@ def main():
                                 pygame.display.update()
                                 pygame.time.delay(5000)
                                 game = False
-                            
-                            
-
                     else:
                         user_text += event.unicode
 
