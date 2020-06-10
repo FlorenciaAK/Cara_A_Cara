@@ -84,7 +84,7 @@ class Carac:
 
 #----------classe que cria os botões das personagens
 class Button(pygame.sprite.Sprite):
-    def __init__(self,nome_da_imagem, x,y,largura,altura):
+    def __init__(self,nome_da_imagem, x,y,largura,altura, valor = None):
         #----------Define o botão importando as sprites das personagens
         arquivo = os.path.join("assets","img",nome_da_imagem)
         self.image = carrega_imagens(arquivo)
@@ -97,6 +97,7 @@ class Button(pygame.sprite.Sprite):
         self.altura = altura
         #----------variável que adiciona ou retira o x em cima da personagem
         self.selecionada = False
+        self.valor = valor
 
     #----------função que desenha o botao na tela 
     def draw(self,win,outline=None):
@@ -119,7 +120,7 @@ class Button(pygame.sprite.Sprite):
 
 #----------classe que cria os botões das settings
 class Settings:
-    def __init__(self, color, x, y, width, height, text, tam_fonte):
+    def __init__(self, color, x, y, width, height, text, tam_fonte, valor = None):
         self.color = color
         self.x = x
         self.y = y
@@ -127,6 +128,7 @@ class Settings:
         self.height = height
         self.text = text
         self.tamanho_da_fonte = tam_fonte
+        self.valor = valor
 
     def draw(self, win, outline=None, tam_fonte=20):
         #----------Call this method to draw the button on the screen
@@ -174,7 +176,7 @@ def main():
     Francisco = Carac('masculino', 'clara',  'castanho', 'aberta',  'azuis',     'nao',   'bigode', 'pontudo',  'nao')
     Erica = Carac('feminino',      'clara',  'loiro',    'fecada',  'azuis',     'sim',   'nao',    'redondo',  'chapeu')
     Sonia = Carac('feminino',      'clara',  'branco',   'fechada', 'verdes',    'sim',   'nao',    'pontudo',  'brincos')
-    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',   'preto',     'sim',   'bigode','pontudo',  'nao')
+    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',   'pretos',     'sim',   'bigode','pontudo',  'nao')
     Julia = Carac('feminino',      'clara',  'castanho', 'fechada', 'pretos',    'nao',   'nao',    'redondo',  'nao')
     Eduardo = Carac('masculino' ,  'clara',  'loiro',    'aberta',  'azuis',     'nao',   'nao',    'pontudo',  'chapeu')
     Mariana = Carac('feminino',    'clara',  'branco',   'fechada', 'castanhos', 'nao',   'nao',    'redondo',  'brincos')
@@ -247,8 +249,8 @@ def main():
     Regras = Settings(VERMELHO, 150 , 300, 400, 200,'Regras',60) 
     Inicio = Settings(VERDE, 850 , 300, 400, 200,'Iniciar',60)
     Chutar = Settings(AZUL,1000,20,200,100,'Chutar', 60)
-    Sim = Settings(VERDE,850,250,100,50,'Sim',35)
-    Nao = Settings(VERMELHO,1050,250,100,50,'Não',35)
+    Sim = Settings(VERDE,850,250,100,50,'Sim',35, 'sim')
+    Nao = Settings(VERMELHO,1050,250,100,50,'Não',35, 'nao')
     Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
@@ -263,51 +265,50 @@ def main():
     acessorios_button = Settings(VERDE, 680, 527, largura_carac, altura_carac,'Acessórios', 20)
 
     #----------criação dos objetos da característica sexo
-    masculino_button = Button('sexo_masculino.jpeg', 850, 200,largura_op,altura_op)
-    feminino_button = Button('sexo_feminino.jpeg', 1050, 200,largura_op,altura_op)
-    sexo = False
-
+    masculino_button = Button('sexo_masculino.jpeg', 850, 200,largura_op,altura_op, 'masculino')
+    feminino_button = Button('sexo_feminino.jpeg', 1050, 200,largura_op,altura_op, 'feminino')
+    
     #----------criação dos objetos da característica pele
-    clara_button = Button('pele_clara.jpeg', 850, 200,largura_op,altura_op)
-    escura_button = Button('pele_escura.jpeg', 1050, 200,largura_op,altura_op)
+    clara_button = Button('pele_clara.jpeg', 850, 200,largura_op,altura_op, 'clara')
+    escura_button = Button('pele_escura.jpeg', 1050, 200,largura_op,altura_op, 'escura')
 
     #----------criação dos objetos da característica cabelo
-    cabelo_preto_button = Button('cabelo_preto.jpeg', 700, 200,largura_op,altura_op)
-    cabelo_branco_button = Button('cabelo_branco.jpeg', 800, 200,largura_op,altura_op)
-    cabelo_loiro_button = Button('cabelo_loiro.jpeg', 900, 200,largura_op,altura_op)
-    cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1000, 200,largura_op,altura_op)
-    cabelo_castanho_button = Button('cabelo_castanho.jpeg',1100, 200,largura_op,altura_op)
-    careca_button = Button('careca.png',1200, 200,largura_op,altura_op)
+    cabelo_preto_button = Button('cabelo_preto.jpeg', 700, 200,largura_op,altura_op, 'preto')
+    cabelo_branco_button = Button('cabelo_branco.jpeg', 800, 200,largura_op,altura_op, 'branco')
+    cabelo_loiro_button = Button('cabelo_loiro.jpeg', 900, 200,largura_op,altura_op, 'loiro')
+    cabelo_ruivo_button = Button('cabelo_ruivo.jpeg', 1000, 200,largura_op,altura_op, 'ruivo')
+    cabelo_castanho_button = Button('cabelo_castanho.jpeg',1100, 200,largura_op,altura_op, 'castanho')
+    careca_button = Button('careca.png',1200, 200,largura_op,altura_op, 'nao')
 
     #----------criação dos objetos da característica boca
-    boca_aberta_button = Button('boca_aberta.jpeg', 850, 200,largura_op,altura_op)
-    boca_fechada_button = Button('boca_fechada.jpeg', 1050, 200,largura_op,altura_op)
+    boca_aberta_button = Button('boca_aberta.jpeg', 850, 200,largura_op,altura_op, 'aberta')
+    boca_fechada_button = Button('boca_fechada.jpeg', 1050, 200,largura_op,altura_op, 'fechada')
 
     #----------criação dos objetos da característica olhos
-    olho_preto_button = Button('olhos_pretos.jpeg', 800, 200,largura_op,altura_op)
-    olho_azul_button = Button('olhos_azuis.jpeg', 900, 200,largura_op,altura_op)
-    olho_verde_button = Button('olhos_verdes.jpeg', 1000, 200,largura_op,altura_op)
-    olho_castanho_button = Button('olhos_castanhos.jpeg',1100, 200,largura_op,altura_op)
+    olho_preto_button = Button('olhos_pretos.jpeg', 800, 200,largura_op,altura_op, 'pretos')
+    olho_azul_button = Button('olhos_azuis.jpeg', 900, 200,largura_op,altura_op, 'azuis')
+    olho_verde_button = Button('olhos_verdes.jpeg', 1000, 200,largura_op,altura_op, 'verdes')
+    olho_castanho_button = Button('olhos_castanhos.jpeg',1100, 200,largura_op,altura_op, 'castanhos')
 
     #----------criação dos objetos da característica óculos
     #chamar o draw.Sim e o draw.Nao
 
     #----------criação dos objetos da característica pelo facial
-    pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op)
-    pelo_facial_bigode_button = Button('bigode.jpeg', 1050, 200,largura_op,altura_op)
+    pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op, 'barba')
+    pelo_facial_bigode_button = Button('bigode.jpeg', 1050, 200,largura_op,altura_op, 'bigode')
 
     #----------criação dos objetos da característica queixo
-    queixo_redondo_button = Button('queixo_redondo.jpeg', 850, 200,largura_op,altura_op)
-    queixo_pontudo_button = Button('queixo_pontudo.jpeg', 1050, 200,largura_op,altura_op)
+    queixo_redondo_button = Button('queixo_redondo.jpeg', 850, 200,largura_op,altura_op, 'redondo')
+    queixo_pontudo_button = Button('queixo_pontudo.jpeg', 1050, 200,largura_op,altura_op, 'pontudo')
 
     #----------criação dos objetos da característica acessórios
-    batom_button = Button('batom.jpeg', 750, 200,largura_op,altura_op)
-    faixa_button = Button('faixa.jpeg', 850, 200,largura_op,altura_op)
-    chapeu_button = Button('chapeu.jpeg', 950, 200,largura_op,altura_op)
-    brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op)
-    sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op)
+    batom_button = Button('batom.jpeg', 750, 200,largura_op,altura_op, 'batom')
+    faixa_button = Button('faixa.jpeg', 850, 200,largura_op,altura_op, 'faixa')
+    chapeu_button = Button('chapeu.jpeg', 950, 200,largura_op,altura_op, 'chapeu')
+    brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op, 'brincos')
+    sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op, 'nao')
 
-    lista_Botoes = [masculino_button,feminino_button]
+    lista_Botoes = [masculino_button,feminino_button,clara_button,escura_button,cabelo_preto_button,cabelo_branco_button,cabelo_castanho_button,cabelo_loiro_button,cabelo_ruivo_button,careca_button,boca_aberta_button,boca_fechada_button,olho_preto_button,olho_azul_button,olho_castanho_button,olho_verde_button,pelo_facial_barba_button,pelo_facial_bigode_button,queixo_pontudo_button,queixo_redondo_button,batom_button,faixa_button,chapeu_button,brinco_button,sem_acessórios_button]
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
@@ -650,6 +651,22 @@ def main():
                 if sexo_button.isOver(pos):
                     if v_sexo == False:
                         v_sexo = True
+                        if masculino_button.isOver(pos):
+                            print('botao')
+                            if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == masculino_button.valor:
+                                Sim.draw(window, PRETO)
+                                pygame.time.delay(2000)
+                            else:
+                                Nao.draw(window, PRETO)
+                                pygame.time.delay(2000)
+                        if feminino_button.isOver(pos):
+                            print('mdo')
+                            if personagens_dic[personagem_escolhido]['Caracteristicas'].sexo == feminino_button.valor:
+                                Sim.draw(window, PRETO)
+                                pygame.time.delay(2000)
+                            else:
+                                Nao.draw(window, PRETO)
+                                pygame.time.delay(2000)
                     else:
                         v_sexo = False
                 if pele_button.isOver(pos):
@@ -692,9 +709,7 @@ def main():
                         v_acessorio = True
                     else:
                         v_acessorio = False
-                #for b in lista_Botoes:
-                #    if b.isOver(pos):
-                        
+               
                    
                     
 
