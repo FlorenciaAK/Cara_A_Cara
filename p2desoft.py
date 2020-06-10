@@ -450,15 +450,9 @@ def main():
         Chutar.draw(window,PRETO)
 
         #----------Desenha os botões das características
-        sexo_button.draw(window,PRETO)
-        pele_button.draw(window,PRETO)
-        cabelo_button.draw(window,PRETO)
-        boca_button.draw(window,PRETO)
-        olho_button.draw(window,PRETO)
-        oculos_button.draw(window,PRETO)
-        barba_button.draw(window,PRETO)
-        queixo_button.draw(window,PRETO)
-        acessorios_button.draw(window,PRETO)
+        carac_botoes = [sexo_button,pele_button,cabelo_button,boca_button,olho_button,oculos_button,barba_button,queixo_button,acessorios_button]
+        for c in carac_botoes:
+            c.draw(window,PRETO)
 
         #----------variável da posição do mouse
         pos = pygame.mouse.get_pos()
