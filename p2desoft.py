@@ -717,8 +717,8 @@ def main():
                         v_acessorio = True
                     else:
                         v_acessorio = False
-                for b in lista_Botoes:
-                    if b.isOver(pos):
+                #for b in lista_Botoes:
+                #    if b.isOver(pos):
                         
                    
                     
@@ -736,7 +736,11 @@ def main():
                             venceu_load = carrega_imagens(venceu_dir)
                             venceu = pygame.transform.scale(venceu_load, (LARGURA, ALTURA))
                             window.blit(venceu, (0, 0))
+                            pygame.display.update()
+                            pygame.time.delay(5000)
+                            game = False
                         else:
+                            
                             contador -= 1
                             
 
