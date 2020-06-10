@@ -248,6 +248,7 @@ def main():
     Chutar = Settings(AZUL,1000,20,200,100,'Chutar', 60)
     Sim = Settings(VERDE,850,250,100,50,'Sim',35)
     Nao = Settings(VERMELHO,1050,250,100,50,'Não',35)
+    Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
     sexo_button = Settings(VERDE, 950, 680, largura_carac, altura_carac,'Sexo', 20)
@@ -740,7 +741,9 @@ def main():
                             pygame.time.delay(5000)
                             game = False
                         else:
-                            
+                            Errou.draw(window, PRETO)
+                            pygame.display.update()
+                            pygame.time.delay(2000)
                             contador -= 1
                             
 
