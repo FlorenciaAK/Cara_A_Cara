@@ -217,6 +217,7 @@ def main():
     Marta_button = Button('Marta.jpg',510,392,largura_botao,altura_botao)
     Renato_button = Button('Renato.jpg',510,578,largura_botao,altura_botao)
 
+    #----------dicionário que contem as características das personagens
     personagens_dic["Rodrigo"]={"Button":Rodrigo_button,"Caracteristicas":Rodrigo}
     personagens_dic["Karina"]={"Button":Karina_button,"Caracteristicas":Karina}
     personagens_dic["Ricardo"]={"Button":Ricardo_button,"Caracteristicas":Ricardo}
