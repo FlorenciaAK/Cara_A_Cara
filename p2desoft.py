@@ -442,30 +442,9 @@ def main():
         window.blit(pessoa_neutra,(800,350))
 
         #----------Desenha os botões das personagens 
-        Aline_button.draw(window,PRETO)
-        Rodrigo_button.draw(window,PRETO) 
-        Karina_button.draw(window,PRETO)
-        Ricardo_button.draw(window,PRETO)
-        Bruno_button.draw(window,PRETO)
-        Paula_button.draw(window,PRETO)
-        Francisco_button.draw(window,PRETO)
-        Erica_button.draw(window,PRETO)
-        Sonia_button.draw(window,PRETO) 
-        Felipe_button.draw(window,PRETO)
-        Julia_button.draw(window,PRETO)
-        Eduardo_button.draw(window,PRETO) 
-        Mariana_button.draw(window,PRETO)
-        Pedro_button.draw(window,PRETO)
-        Gisele_button.draw(window,PRETO)
-        Juliana_button.draw(window,PRETO)
-        Robson_button.draw(window,PRETO)
-        Gabriel_button.draw(window,PRETO)
-        Nathalia_button.draw(window,PRETO)
-        Daniel_button.draw(window,PRETO)
-        Marcelo_button.draw(window,PRETO)
-        Joao_button.draw(window,PRETO)
-        Marta_button.draw(window,PRETO)
-        Renato_button.draw(window,PRETO)
+        personagens_botoes = [Aline_button,Rodrigo_button,Karina_button,Ricardo_button,Bruno_button,Paula_button,Bruno_button,Paula_button,Francisco_button,Erica_button,Sonia_button,Felipe_button,Julia_button,Eduardo_button,Mariana_button,Pedro_button,Gisele_button,Juliana_button,Robson_button,Gabriel_button,Nathalia_button,Daniel_button,Marcelo_button,Joao_button,Marta_button,Renato_button]
+        for p in personagens_botoes:
+            p.draw(window,PRETO)
 
         #----------Desenha os botão chutar
         Chutar.draw(window,PRETO)
