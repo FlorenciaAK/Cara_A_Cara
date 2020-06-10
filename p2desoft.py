@@ -733,7 +733,7 @@ def main():
                         user_text_lower = user_text.lower()
                         if user_text_lower == personagem_escolhido_lower:
                             #----------tela do vencedor
-                            venceu_dir = os.path.join("assets","img",'Tela_ganhadora.jpeg')  #########criar imgame de regras 
+                            venceu_dir = os.path.join("assets","img",'Tela_ganhadora.jpeg')  
                             venceu_load = carrega_imagens(venceu_dir)
                             venceu = pygame.transform.scale(venceu_load, (LARGURA, ALTURA))
                             window.blit(venceu, (0, 0))
@@ -741,10 +741,20 @@ def main():
                             pygame.time.delay(5000)
                             game = False
                         else:
-                            Errou.draw(window, PRETO)
-                            pygame.display.update()
-                            pygame.time.delay(2000)
                             contador -= 1
+                            if contador>0:
+                                Errou.draw(window, PRETO)
+                                pygame.display.update()
+                                pygame.time.delay(2000)
+                            if contador == 0:
+                                perdeu_dir = os.path.join("assets","img",'Tela_perdedora.jpeg')  
+                                perdeu_load = carrega_imagens(perdeu_dir)
+                                perdeu = pygame.transform.scale(perdeu_load, (LARGURA, ALTURA))
+                                window.blit(perdeu, (0, 0))
+                                pygame.display.update()
+                                pygame.time.delay(5000)
+                                game = False
+                            
                             
 
                     else:
