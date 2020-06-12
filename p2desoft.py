@@ -400,8 +400,8 @@ def main():
     active = False
 
     #----------contador de tentativas
-    contador_c = 5
-    contador_p = 2
+    contador_c = 3
+    contador_p = 10
 
     #----------variável que determina se as regras estão sendo mostradas
     manual = False
@@ -444,7 +444,7 @@ def main():
                 game = True
                 break
 
-    while game and (contador_c > 0) and (contador_p > -1):
+    while game:
         #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
         
@@ -624,7 +624,7 @@ def main():
         if apertou:
             contador_p -=1
 
-        if contador_p < -1:
+        if contador_p < 0:
             perdeu = True
 
         if perdeu:
