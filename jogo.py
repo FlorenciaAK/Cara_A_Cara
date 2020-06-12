@@ -261,8 +261,8 @@ def main():
     Sim = Settings(VERDE,850,250,100,50,'Sim',35, 'sim')
     Nao = Settings(VERMELHO,1050,250,100,50,'Não',35, 'nao')
     Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
-    Tem_sim =  Settings(VERDE,950,250,100,50,'Tem',35, 'sim')
-    Tem_nao = Settings(VERMELHO,950,250,150,50,'Não Tem',35, 'nao') 
+    Tem_sim = Settings(VERDE,950,250,150,50,'Acertou',35, 'sim')
+    Tem_nao = Settings(VERMELHO,950,250,150,50,'Errou',35, 'nao') 
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
     sexo_button = Settings(CINZA, 950, 680, largura_carac, altura_carac,'Sexo', 20)
@@ -308,18 +308,18 @@ def main():
     #----------criação dos objetos da característica pelo facial
     pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op, 'barba',False)
     pelo_facial_bigode_button = Button('bigode.jpeg', 950, 200,largura_op,altura_op, 'bigode',False)
-    nao_pelo_facial_button = Button('sem_acessorios.jpeg',1050,200,largura_op,altura_op,'nao',False)
+    nao_pelo_facial_button = Button('sem_pelo.jpeg',1050,200,largura_op,altura_op,'nao',False)
 
     #----------criação dos objetos da característica queixo
     queixo_redondo_button = Button('queixo_redondo.jpeg', 850, 200,largura_op,altura_op, 'redondo',False)
     queixo_pontudo_button = Button('queixo_pontudo.jpeg', 1050, 200,largura_op,altura_op, 'pontudo',False)
 
     #----------criação dos objetos da característica acessórios
-    batom_button = Button('batom.jpeg', 750, 200,largura_op,altura_op, 'batom')
-    faixa_button = Button('faixa.jpeg', 850, 200,largura_op,altura_op, 'faixa')
-    chapeu_button = Button('chapeu.jpeg', 950, 200,largura_op,altura_op, 'chapeu')
-    brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op, 'brincos')
-    sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op, 'nao')
+    batom_button = Button('batom.jpeg', 750, 200,largura_op,altura_op, 'batom', False)
+    faixa_button = Button('faixa.jpeg', 850, 200,largura_op,altura_op, 'faixa', False)
+    chapeu_button = Button('chapeu.jpeg', 950, 200,largura_op,altura_op, 'chapeu', False)
+    brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op, 'brincos', False)
+    sem_acessorios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op, 'nao', False)
 
     sexo_button.lista = [masculino_button,feminino_button]
     pele_button.lista = [clara_button,escura_button]
@@ -327,16 +327,16 @@ def main():
     boca_button.lista = [boca_aberta_button,boca_fechada_button]
     olho_button.lista = [olho_preto_button,olho_azul_button,olho_castanho_button,olho_verde_button]
     oculos_button.lista = [com_oculos_button,sem_oculos_button]
-    barba_button.lista = [pelo_facial_barba_button,pelo_facial_bigode_button]
+    barba_button.lista = [pelo_facial_barba_button,pelo_facial_bigode_button, nao_pelo_facial_button]
     queixo_button.lista = [queixo_pontudo_button,queixo_redondo_button]
-    acessorios_button.lista = [batom_button,faixa_button,chapeu_button,brinco_button,sem_acessórios_button]
+    acessorios_button.lista = [batom_button,faixa_button,chapeu_button,brinco_button,sem_acessorios_button]
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
     pygame.mixer.music.set_volume(0.05)
-   pygame.mixer.music.play(-1)
+    pygame.mixer.music.play(-1)
 
     #----------variável que armazena som quando o X é adicionado
     arquivo_x = os.path.join('assets','sons','som_do_x.ogg')
