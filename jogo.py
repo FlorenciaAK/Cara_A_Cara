@@ -604,7 +604,7 @@ def main():
             brinco_button.draw(window,PRETO)
             faixa_button.draw(window,PRETO)
             chapeu_button.draw(window,PRETO)
-            sem_acessórios_button.draw(window,PRETO)
+            sem_acessorios_button.draw(window,PRETO)
 
         now = pygame.time.get_ticks()
 
