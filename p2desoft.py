@@ -84,8 +84,6 @@ class Carac:
         self.caracteristicas = [sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios]
         
 
-        
-
 
 #----------classe que cria os botões das personagens
 class Button(pygame.sprite.Sprite):
@@ -137,6 +135,7 @@ class Settings:
         self.tamanho_da_fonte = tam_fonte
         self.valor = valor
         self.desenha = desenha
+        self.lista = []
     
 
     def draw(self, win, outline=None, tam_fonte=20):
@@ -185,7 +184,7 @@ def main():
     Francisco = Carac('masculino', 'clara',  'castanho', 'aberta',  'azuis',     'nao',   'bigode', 'pontudo',  'nao')
     Erica = Carac('feminino',      'clara',  'loiro',    'fecada',  'azuis',     'sim',   'nao',    'redondo',  'chapeu')
     Sonia = Carac('feminino',      'clara',  'branco',   'fechada', 'verdes',    'sim',   'nao',    'pontudo',  'brincos')
-    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',   'pretos',     'sim',   'bigode','pontudo',  'nao')
+    Felipe = Carac('masculino',    'clara',  'nao',      'aberta',  'pretos',   'sim',    'bigode', 'pontudo',  'nao')
     Julia = Carac('feminino',      'clara',  'castanho', 'fechada', 'pretos',    'nao',   'nao',    'redondo',  'nao')
     Eduardo = Carac('masculino' ,  'clara',  'loiro',    'aberta',  'azuis',     'nao',   'nao',    'pontudo',  'chapeu')
     Mariana = Carac('feminino',    'clara',  'branco',   'fechada', 'castanhos', 'nao',   'nao',    'redondo',  'brincos')
@@ -263,7 +262,7 @@ def main():
     Nao = Settings(VERMELHO,1050,250,100,50,'Não',35, 'nao')
     Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
     Tem_sim =  Settings(VERDE,950,250,100,50,'Tem',35, 'sim')
-    Tem_nao = Settings(VERMELHO,950,250,100,50,'Não Tem',35, 'nao') 
+    Tem_nao = Settings(VERMELHO,950,250,150,50,'Não Tem',35, 'nao') 
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
     sexo_button = Settings(CINZA, 950, 680, largura_carac, altura_carac,'Sexo', 20)
@@ -303,7 +302,8 @@ def main():
     olho_castanho_button = Button('olhos_castanhos.jpeg',1100, 200,largura_op,altura_op, 'castanhos',False)
 
     #----------criação dos objetos da característica óculos
-    #chamar o draw.Sim e o draw.Nao
+    com_oculos_button = Button("com_oculos.png",850,200,largura_op,altura_op, 'sim',False)
+    sem_oculos_button = Button("sem_oculos.png",1050,200,largura_op,altura_op, 'nao',False)
 
     #----------criação dos objetos da característica pelo facial
     pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op, 'barba',False)
@@ -320,7 +320,15 @@ def main():
     brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op, 'brincos')
     sem_acessórios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op, 'nao')
 
-    lista_Botoes = [masculino_button,feminino_button,clara_button,escura_button,cabelo_preto_button,cabelo_branco_button,cabelo_castanho_button,cabelo_loiro_button,cabelo_ruivo_button,careca_button,boca_aberta_button,boca_fechada_button,olho_preto_button,olho_azul_button,olho_castanho_button,olho_verde_button,pelo_facial_barba_button,pelo_facial_bigode_button,queixo_pontudo_button,queixo_redondo_button,batom_button,faixa_button,chapeu_button,brinco_button,sem_acessórios_button]
+    sexo_button.lista = [masculino_button,feminino_button]
+    pele_button.lista = [clara_button,escura_button]
+    cabelo_button.lista = [cabelo_preto_button,cabelo_branco_button,cabelo_castanho_button,cabelo_loiro_button,cabelo_ruivo_button,careca_button]
+    boca_button.lista = [boca_aberta_button,boca_fechada_button]
+    olho_button.lista = [olho_preto_button,olho_azul_button,olho_castanho_button,olho_verde_button]
+    oculos_button.lista = [com_oculos_button,sem_oculos_button]
+    barba_button.lista = [pelo_facial_barba_button,pelo_facial_bigode_button]
+    queixo_button.lista = [queixo_pontudo_button,queixo_redondo_button]
+    acessorios_button.lista = [batom_button,faixa_button,chapeu_button,brinco_button,sem_acessórios_button]
 
     #----------música de fundo
     arquivo = os.path.join("assets","sons", "ghost_town.ogg")
@@ -367,10 +375,10 @@ def main():
     game = False
     desenha_temsim = False
     desenha_temnao = False
+    desenha_errou = False
     dt_temsim = pygame.time.get_ticks()
     dt_temnao = pygame.time.get_ticks()
-
-
+    dt_errou = pygame.time.get_ticks()
 
     #----------tela de regras
     regras_dir = os.path.join("assets","img",'regras.jpeg')  #########criar imagem de regras 
@@ -393,7 +401,7 @@ def main():
 
     #----------contador de tentativas
     contador_c = 5
-    contador_p = 10
+    contador_p = 2
 
     #----------variável que determina se as regras estão sendo mostradas
     manual = False
@@ -436,7 +444,7 @@ def main():
                 game = True
                 break
 
-    while game and (contador_c > 0) and (contador_p > 0):
+    while game and (contador_c > 0) and (contador_p > -1):
         #----------Marca um ritmo pro computador funcionar
         clock.tick(FPS)
         
@@ -452,7 +460,7 @@ def main():
         window.blit(pessoa_neutra,(800,350))
 
         #----------Desenha os botões das personagens 
-        personagens_botoes = [Aline_button,Rodrigo_button,Karina_button,Ricardo_button,Bruno_button,Paula_button,Bruno_button,Paula_button,Francisco_button,Erica_button,Sonia_button,Felipe_button,Julia_button,Eduardo_button,Mariana_button,Pedro_button,Gisele_button,Juliana_button,Robson_button,Gabriel_button,Nathalia_button,Daniel_button,Marcelo_button,Joao_button,Marta_button,Renato_button]
+        personagens_botoes = [Aline_button,Rodrigo_button,Karina_button,Ricardo_button,Bruno_button,Paula_button,Francisco_button,Erica_button,Sonia_button,Felipe_button,Julia_button,Eduardo_button,Mariana_button,Pedro_button,Gisele_button,Juliana_button,Robson_button,Gabriel_button,Nathalia_button,Daniel_button,Marcelo_button,Joao_button,Marta_button,Renato_button]
         for p in personagens_botoes:
             p.draw(window,PRETO)
 
@@ -461,15 +469,21 @@ def main():
 
         #----------Desenha os botões das características
         carac_botoes = [sexo_button,pele_button,cabelo_button,boca_button,olho_button,oculos_button,barba_button,queixo_button,acessorios_button]
-        for c in carac_botoes:
-            c.draw(window,PRETO)
+        
+        for f in carac_botoes:
+            f.draw(window,PRETO)
 
         #----------variável da posição do mouse
         pos = pygame.mouse.get_pos()
 
         #----------coleta de eventos
         eventos = pygame.event.get()
+
+        #----------varíavel que determina se foi feita uma pergunta
         apertou = False
+
+        perdeu = False
+
         #----------percorre a lista de eventos
         for event in eventos:
             #----------evento para sair do jogo
@@ -490,38 +504,32 @@ def main():
                 #----------evento que verifica se o jogador clicou no botão chute
                 if Chutar.isOver(pos):
                     draw_input = True
-                #----------evento ?????????
+                #----------evento para checar a seleção do input do chute
                 if input_rect.collidepoint(event.pos):
                     active = True
                 else:
                     active = False
                 #----------evento que verifica se o jogador clicou em alguma das características
-                for a in carac_botoes:
-                    if a.isOver(pos):
-                        if a.desenha == False:
-                           a.desenha = True
+                #----------checa as carac gerais e desenha as específicas
+                for carac_geral in carac_botoes:
+                    if carac_geral.isOver(pos):
+                        if carac_geral.desenha == False:
+                           carac_geral.desenha = True
                         else:
-                            a.desenha = False
-                    for c in lista_Botoes:
-                        if c.isOver(pos):
-                            if c.valor in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
-                                apertou = True
-                                a.desenha = False
-                                desenha_temsim =True
-                                dt_temsim = pygame.time.get_ticks()
-                            elif c.valor not in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
-                                apertou = True
-                                a.desenha = False
-                                desenha_temnao = True
-                                dt_temnao = pygame.time.get_ticks()
-                            if contador_p == 0:
-                                perdeu_dir = os.path.join("assets","img",'Tela_perdedora.jpeg')  
-                                perdeu_load = carrega_imagens(perdeu_dir)
-                                perdeu = pygame.transform.scale(perdeu_load, (LARGURA, ALTURA))
-                                window.blit(perdeu, (0, 0))
-                                pygame.display.update()
-                                pygame.time.delay(5000)
-                                game = False
+                            carac_geral.desenha = False
+                    if carac_geral.desenha:
+                        for carac_esp in carac_geral.lista:
+                            if carac_esp.isOver(pos):
+                                if carac_esp.valor in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
+                                    apertou = True
+                                    carac_geral.desenha = False
+                                    desenha_temsim = True
+                                    dt_temsim = pygame.time.get_ticks()
+                                elif carac_esp.valor not in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
+                                    apertou = True
+                                    desenha_temnao = True
+                                    carac_geral.desenha = False
+                                    dt_temnao = pygame.time.get_ticks()
 
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
@@ -542,23 +550,16 @@ def main():
                         else:
                             contador_c -= 1
                             if contador_c>0:
-                                Errou.draw(window, PRETO)
-                                pygame.display.update()
-                                pygame.time.delay(2000)
+                                desenha_errou = True
+                                dt_errou = pygame.time.get_ticks()
                             if contador_c == 0:
-                                perdeu_dir = os.path.join("assets","img",'Tela_perdedora.jpeg')  
-                                perdeu_load = carrega_imagens(perdeu_dir)
-                                perdeu = pygame.transform.scale(perdeu_load, (LARGURA, ALTURA))
-                                window.blit(perdeu, (0, 0))
-                                pygame.display.update()
-                                pygame.time.delay(5000)
-                                game = False
+                                perdeu = True
+                                
                     else:
                         user_text += event.unicode
 
             if active:
                 input_cor = cor_bativa
-
             else:
                 input_cor = cor_bpassiva
         #----------jogador escreve o chute
@@ -588,8 +589,8 @@ def main():
             olho_preto_button.draw(window,PRETO)
             olho_verde_button.draw(window,PRETO)
         if oculos_button.desenha == True:
-            Sim.draw(window,PRETO)
-            Nao.draw(window,PRETO)
+            com_oculos_button.draw(window,PRETO)
+            sem_oculos_button.draw(window,PRETO)
         if barba_button.desenha == True:
             pelo_facial_bigode_button.draw(window,PRETO)
             pelo_facial_barba_button.draw(window,PRETO)
@@ -602,20 +603,38 @@ def main():
             faixa_button.draw(window,PRETO)
             chapeu_button.draw(window,PRETO)
             sem_acessórios_button.draw(window,PRETO)
+
         now = pygame.time.get_ticks()
+
         if desenha_temsim:
             Tem_sim.draw(window, PRETO)
-            if now - dt_temsim > 3000:
+            if now - dt_temsim > 2000:
                 desenha_temsim = False 
             
         if desenha_temnao:
             Tem_nao.draw(window, PRETO)
-            if now - dt_temnao > 3000:
+            if now - dt_temnao > 2000:
                 desenha_temnao = False 
+
+        if desenha_errou:
+            Errou.draw(window, PRETO)
+            if now - dt_errou > 2000:
+                desenha_errou = False
 
         if apertou:
             contador_p -=1
-        
+
+        if contador_p < -1:
+            perdeu = True
+
+        if perdeu:
+            perdeu_dir = os.path.join("assets","img",'Tela_perdedora.jpeg')  
+            perdeu_load = carrega_imagens(perdeu_dir)
+            perdeu = pygame.transform.scale(perdeu_load, (LARGURA, ALTURA))
+            window.blit(perdeu, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5000)
+            game = False
         
         #----------tentativas na tela:
         window.blit(chutes, (700,50))
