@@ -307,7 +307,8 @@ def main():
 
     #----------criação dos objetos da característica pelo facial
     pelo_facial_barba_button = Button('barba.jpeg', 850, 200,largura_op,altura_op, 'barba',False)
-    pelo_facial_bigode_button = Button('bigode.jpeg', 1050, 200,largura_op,altura_op, 'bigode',False)
+    pelo_facial_bigode_button = Button('bigode.jpeg', 950, 200,largura_op,altura_op, 'bigode',False)
+    nao_pelo_facial_button = Button('sem_acessorios.jpeg',1050,200,largura_op,altura_op,'nao',False)
 
     #----------criação dos objetos da característica queixo
     queixo_redondo_button = Button('queixo_redondo.jpeg', 850, 200,largura_op,altura_op, 'redondo',False)
@@ -335,7 +336,7 @@ def main():
     caminho = os.path.join(os.path.dirname(__file__), arquivo)
     pygame.mixer.music.load(caminho)
     pygame.mixer.music.set_volume(0.05)
-   #pygame.mixer.music.play(-1)
+   pygame.mixer.music.play(-1)
 
     #----------variável que armazena som quando o X é adicionado
     arquivo_x = os.path.join('assets','sons','som_do_x.ogg')
@@ -594,6 +595,7 @@ def main():
         if barba_button.desenha == True:
             pelo_facial_bigode_button.draw(window,PRETO)
             pelo_facial_barba_button.draw(window,PRETO)
+            nao_pelo_facial_button.draw(window,PRETO)
         if queixo_button.desenha == True:
             queixo_pontudo_button.draw(window,PRETO)
             queixo_redondo_button.draw(window,PRETO)

@@ -1,16 +1,15 @@
 # Cara_A_Cara
-Grupo: Florencia Averame, Gustavo Borges, Sophia Braz
+Grupo: Florencia Averame, Gustavo Borges & Sophia Braz
 
-Intruções:
+# Intruções:
+O computador sorteia uma personagem e você deverá adivinhá-la através de perguntas.
 
-O jogo é contra o computador.
+Na parte lateral esquerda da tela estarão todas as personagens disponíveis. Ao redor da personagem neutra disponível na lateral direita, estão disponíveis todas as características sobre as quais você pode fazer perguntas. Uma vez apertada a caracterísitca desejada, vão aparecer opções sobre esta característica. Basta clicar nelas e você obterá a resposta "Tem" ou "Não tem" referido à personagem você está tentando adivinhar. Você pode clicar nas imagens das personagens para colocar um "X" em cima delas. Caso se arrependa, basta clicar emcima delas de novo que o "X" sai. Quando sentir que já está pronto para adivinhar, clique no botão chute e se assegure que o retângulo que aparecer tenha as bordas azuis. Vale lembrar tambem que só podem ser feitas 10 perguntas e 3 chutes.
 
-Na parte de cima da tela estarão todas as personagens disponíveis. Através de uma imagem de uma personagem neutra, o jogador consegue clicar na característica que deseja adivinhar (sexo, cabelo, bigode, óculos, etc). Desta forma abrirão subcaracterísticas da escolhida e o jogador clicará nelas para as escolher. 
+Bom jogo!
 
-O jogador clicará nas imagens das personagens disponíveis para descartá-las, podendo clicar denovo caso se arrependa.
+# Video explicativo
 
-VIDEO :
 
-Para jogar o jogo é preciso a instalar biblioteca pygame do python
-
-Como executar o jogo?
+# Como executar o jogo?
+É preciso nstalar biblioteca pygame do python e clonar este repositório no seu computador. O jogo se encontra no documento "jogo.py".
