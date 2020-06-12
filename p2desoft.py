@@ -91,8 +91,8 @@ class Carac:
 class Button(pygame.sprite.Sprite):
     def __init__(self,nome_da_imagem, x,y,largura,altura, valor = None,desenha = None):
         #----------Define o botão importando as sprites das personagens
-        arquivo = os.path.join("assets","img",nome_da_imagem)
-        self.image = carrega_imagens(arquivo)
+        self.arquivo = os.path.join("assets","img",nome_da_imagem)
+        self.image = carrega_imagens(self.arquivo)
         self.image = pygame.transform.scale(self.image,(largura,altura)) 
         #----------ponto superior esquerdo da imagem
         self.x = x
@@ -469,7 +469,7 @@ def main():
 
         #----------coleta de eventos
         eventos = pygame.event.get()
-
+        apertou = False
         #----------percorre a lista de eventos
         for event in eventos:
             #----------evento para sair do jogo
@@ -486,7 +486,6 @@ def main():
                             b.selecionada = True
                         elif b.selecionada == True:
                             b.selecionada = False
-                        print('botao clicado')
                         som_x.play()
                 #----------evento que verifica se o jogador clicou no botão chute
                 if Chutar.isOver(pos):
@@ -506,12 +505,12 @@ def main():
                     for c in lista_Botoes:
                         if c.isOver(pos):
                             if c.valor in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
-                                contador_p -= 1
+                                apertou = True
                                 a.desenha = False
                                 desenha_temsim =True
                                 dt_temsim = pygame.time.get_ticks()
                             elif c.valor not in personagens_dic[personagem_escolhido]['Caracteristicas'].caracteristicas:
-                                contador_p -= 1
+                                apertou = True
                                 a.desenha = False
                                 desenha_temnao = True
                                 dt_temnao = pygame.time.get_ticks()
@@ -523,8 +522,7 @@ def main():
                                 pygame.display.update()
                                 pygame.time.delay(5000)
                                 game = False
-                                
-                            
+
             #----------evento que permite realizar o chute
             if event.type == pygame.KEYDOWN:
                 if active == True:
@@ -614,6 +612,9 @@ def main():
             Tem_nao.draw(window, PRETO)
             if now - dt_temnao > 3000:
                 desenha_temnao = False 
+
+        if apertou:
+            contador_p -=1
         
         
         #----------tentativas na tela:
