@@ -330,6 +330,7 @@ def main():
     brinco_button = Button('brinco.jpeg',1050, 200,largura_op,altura_op, 'brincos', False)
     sem_acessorios_button = Button('sem_acessorios.jpeg',1150,200,largura_op,altura_op, 'nao', False)
 
+    #----------Lista de Botoes para os loops de print 
     sexo_button.lista = [masculino_button,feminino_button]
     pele_button.lista = [clara_button,escura_button]
     cabelo_button.lista = [cabelo_preto_button,cabelo_branco_button,cabelo_castanho_button,cabelo_loiro_button,cabelo_ruivo_button,careca_button]
@@ -376,9 +377,11 @@ def main():
     personagem_escolhido = nomes_personagens [personagem_sorteio_i]
     personagem_escolhido_lower = personagem_escolhido.lower()
 
+    #----------Loop para asociar o indice do personagem escolhido 
     for k in personagens_dic:
         if personagem_escolhido == personagens_dic[k]:
             num = k
+    #----------Para teste de codigos
     print(personagem_escolhido)
 
     #----------variável que define quando o jogo acaba
@@ -386,6 +389,7 @@ def main():
     desenha_temsim = False
     desenha_temnao = False
     desenha_errou = False
+    #----------variavel para dar o delay 
     dt_temsim = pygame.time.get_ticks()
     dt_temnao = pygame.time.get_ticks()
     dt_errou = pygame.time.get_ticks()
