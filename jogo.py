@@ -72,6 +72,7 @@ def carrega_imagens (imagem):
 #----------classe que atribui características às personagens
 class Carac:
     def __init__ (self, sexo, cor_pele, cor_cabelo, tipo_boca, cor_olho, oculos, pelo_facial, queixo, acessorios):
+        #----------caracteristicas de cada personagens
         self.sexo = sexo
         self.cor_pele = cor_pele
         self.cor_cabelo = cor_cabelo
@@ -106,11 +107,12 @@ class Button(pygame.sprite.Sprite):
 
     #----------função que desenha o botao na tela 
     def draw(self,win,outline=None):
+        #----------Desenha a borda dos botoes tipo button
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.largura+4,self.altura+4),0)
             
         win.blit(self.image,[self.x,self.y])
-
+        #----------Desenha o X em botoes personagens selecionadas
         if self.selecionada:
             pygame.draw.line(win, PRETO, (self.x-2,self.y-2), (self.x+largura_botao, self.y+altura_botao), 5)   
             pygame.draw.line(win, PRETO, (self.x+largura_botao,self.y-2), (self.x-2, self.y+altura_botao), 5) 
@@ -126,25 +128,32 @@ class Button(pygame.sprite.Sprite):
 #----------classe que cria os botões das settings
 class Settings:
     def __init__(self, color, x, y, width, height, text, tam_fonte, valor = None,desenha = None):
+         #----------Cor do Botao
         self.color = color
+        #----------ponto superior esquerdo da imagem
         self.x = x
         self.y = y
+        #----------define altura e largura dos botoes para a funcao draw
         self.width = width
         self.height = height
+        #----------define e formata o texto 
         self.text = text
         self.tamanho_da_fonte = tam_fonte
+        #----------define um valor para o botao
         self.valor = valor
+        #----------define uma booleano para desenhar os botoes 
         self.desenha = desenha
         self.lista = []
     
 
     def draw(self, win, outline=None, tam_fonte=20):
-        #----------Call this method to draw the button on the screen
+        #----------Desenha a borda dos botoes tipo button
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
     
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
-        
+
+        #----------Inclue texto no botao e o formata
         if self.text != '':
             font = pygame.font.SysFont("TimesNewRoman", self.tamanho_da_fonte)
             text = font.render(self.text, 1, (0,0,0))
@@ -262,7 +271,7 @@ def main():
     Nao = Settings(VERMELHO,1050,250,100,50,'Não',35, 'nao')
     Errou = Settings(VERMELHO, 850, 200, 400, 40, 'Chute errado, continue jogando', 30)
     Tem_sim = Settings(VERDE,950,250,150,50,'Acertou',35, 'sim')
-    Tem_nao = Settings(VERMELHO,950,250,150,50,'Errou',35, 'nao') 
+    Tem_nao = Settings(VERMELHO,950,250,150,50,'Errou',35, 'nao')  
 
     #----------criação dos objetos do tipo setting, que define um botao para cada uma das características
     sexo_button = Settings(CINZA, 950, 680, largura_carac, altura_carac,'Sexo', 20)
