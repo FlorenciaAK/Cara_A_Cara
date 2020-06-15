@@ -581,6 +581,7 @@ def main():
             pygame.draw.rect(window,input_cor,input_rect,2)
             superfice_texto = fonte_base.render(user_text,True,input_cor)
             window.blit(superfice_texto,(input_rect.x + 5, input_rect.y + 5))
+        #----------Desenha os botoes da sub caracteristicas
         if sexo_button.desenha == True:
             masculino_button.draw(window,PRETO)
             feminino_button.draw(window,PRETO)
@@ -619,6 +620,7 @@ def main():
             chapeu_button.draw(window,PRETO)
             sem_acessorios_button.draw(window,PRETO)
 
+        #desenha as respostas para as perguntas 
         now = pygame.time.get_ticks()
 
         if desenha_temsim:
@@ -642,6 +644,7 @@ def main():
         if contador_p < 0:
             perdeu = True
 
+        # Tela perdedora que termina o jogo
         if perdeu:
             perdeu_dir = os.path.join("assets","img",'Tela_perdedora.jpeg')  
             perdeu_load = carrega_imagens(perdeu_dir)
