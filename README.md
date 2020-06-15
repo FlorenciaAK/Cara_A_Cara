@@ -9,7 +9,7 @@ Na parte lateral esquerda da tela estarão todas as personagens disponíveis. Ao
 Bom jogo!
 
 # Video explicativo
-
+https://youtu.be/luIh3ywE3vg
 
 # Como executar o jogo?
-É preciso nstalar biblioteca pygame do python e clonar este repositório no seu computador. O jogo se encontra no documento "jogo.py".
+É preciso instalar a biblioteca pygame do python e clonar este repositório no seu computador. O jogo se encontra no documento "jogo.py".
